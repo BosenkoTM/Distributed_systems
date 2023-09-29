@@ -104,6 +104,8 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 
 - [Расчет конфигурации сети Ethernet](https://disk.yandex.ru/i/WSwJSNc6PP3aRg).
 
+- [Расчет IPv4-подсетей](https://disk.yandex.ru/i/Bnn0pAECM3T2Mg).
+
 - `Семинар 3`. [Message queue, RabbitMQ.](/d-zadanie/03-mq) (Выполнить на базе кластера `МГПУ`).
 
 - `Семинар 4-5`. [Kafka.](https://github.com/BosenkoTM/kafka),  [Kafka2.](https://github.com/Zabi82/KafkaLab) [Kafka3.](https://github.com/cblanton45/kafka-labs).
