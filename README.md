@@ -128,7 +128,7 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 
 ## ТЕСТ 1. Распределенные системы.  
 
-`03.10.2023`
+`03.10.2023 12-45`
 
 [ССЫЛКА ДЛЯ ВХОДА](https://docs.google.com/forms/d/e/1FAIpQLScEjZmp_Fsx2qGEp-KWWR5L8UfUrZs0GmGJIM_Nd3I0nzbuwg/viewform?embedded=true)
 
