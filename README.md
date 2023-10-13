@@ -105,6 +105,8 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 - [Расчет конфигурации сети Ethernet](https://disk.yandex.ru/i/WSwJSNc6PP3aRg).
 
 - [Расчет IPv4-подсетей](https://disk.yandex.ru/i/Bnn0pAECM3T2Mg).
+  
+- [Работа с адресами IP сетей](https://disk.yandex.ru/i/huaNfC05bwGgxQ).
 
 - `Семинар 3`. [Message queue, RabbitMQ.](/d-zadanie/03-mq) (Выполнить на базе кластера `МГПУ`).
 
