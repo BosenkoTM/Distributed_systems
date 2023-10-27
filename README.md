@@ -101,34 +101,23 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 ## Семинары(доп)
 
 - `Семинар 1`. [Протокол HTTP/HTTPS](practice/S-1-%20HTTP)
- 
 - `Семинар 2`.
-
 - [Multicast](d-zadanie/04-multicast) (Выполнить на базе кластера `МГПУ`).
-
 - [Расчет конфигурации сети Ethernet](https://disk.yandex.ru/i/WSwJSNc6PP3aRg).
-
-- [Расчет IPv4-подсетей](https://disk.yandex.ru/i/Bnn0pAECM3T2Mg).
-  
+- [Расчет IPv4-подсетей](https://disk.yandex.ru/i/Bnn0pAECM3T2Mg). 
 - [Работа с адресами IP сетей](https://disk.yandex.ru/i/huaNfC05bwGgxQ).
-
 - `Семинар 3`. [Message queue, RabbitMQ.](/d-zadanie/03-mq) (Выполнить на базе кластера `МГПУ`).
-
 - `Семинар 4`. [Детектор отказов](https://github.com/BosenkoTM/Distributed_systems/tree/main/d-zadanie/06-failure_detection#%D1%81%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80-6-group-membership-%D0%B8-%D0%B4%D0%B5%D1%82%D0%B5%D0%BA%D1%82%D0%BE%D1%80-%D0%BE%D1%82%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2).
-
-- `Семинар 5`. [Kafka.](https://github.com/BosenkoTM/kafka),  [Kafka2.](https://github.com/Zabi82/KafkaLab) [Kafka3.](https://github.com/cblanton45/kafka-labs).
-
-- `Семинар 6`. 
-   
+- `Семинар 5-1`. [First Alpine Linux Containers](https://training.play-with-docker.com/ops-s1-hello/).
+- `Семинар 5-2`. [Docker for Beginners - Linux](https://training.play-with-docker.com/beginner-linux/).
+- `Семинар 6`. [Kafka.](https://github.com/BosenkoTM/kafka),  [Kafka2.](https://github.com/Zabi82/KafkaLab) [Kafka3.](https://github.com/cblanton45/kafka-labs).
+- `Семинар 7`. 
    - [Парадигма Map Reduce - Преподаватель](practice/S-2-09-map-reduce)
-   
    - [Парадигма Map Reduce - Студент]()
-
-- `Семинар 7`. [01_HADOOP администрирование](https://github.com/BosenkoTM/ds_practice/tree/main/exercises/winter_semester_2021-2022/05_hadoop)
+- `Семинар 8`. [01_HADOOP администрирование](https://github.com/BosenkoTM/ds_practice/tree/main/exercises/winter_semester_2021-2022/05_hadoop)
   - Решение самостоятельного задания `Семинар 7` [тут](https://github.com/BosenkoTM/ds_practice/tree/main/solutions/winter_semester_2021-2022/05_hadoop)
   - [02_HADOOP сам_задание](/practice/S-3-HADOOP/2.%20Hadoop%20Lab-1.pdf)
-  
-- `Семинар 8`. [Репликация данных](practice/S-4-10-replication/pr_replica_single_server.pdf)
+- `Семинар 9`. [Репликация данных](practice/S-4-10-replication/pr_replica_single_server.pdf)
   - [Предварительное создание БД](/practice/S-4-10-replication/db_creator.pdf)
    
 
