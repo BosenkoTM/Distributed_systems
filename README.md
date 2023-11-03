@@ -75,7 +75,7 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 - `04-ЛЕКЦИЯ` [Групповые взаимодействия](lectures//lectures/04-ЛЕКЦИЯ_Групповые%20взаимодействия.pdf).
 
 - `05-ЛЕКЦИЯ` [Непрямое взаимодействие](/lectures/05-ЛЕКЦИЯ_Непрямое%20взаимодействие.pdf).
-   - `05-01-ЛЕКЦИЯ` [docker-indirect](/lectures/05-01-docker-indirect-comm.pdf).
+   - `05-01-ЛЕКЦИЯ` [docker-indirect](/lectures/11-docker-indirect-comm.pdf).
    - `05-02-ЛЕКЦИЯ` [Требования к распределенных систем, моделям данных и доступа](/lectures/05-02-Requirements_for_DS.pdf).
    - `05-03-ЛЕКЦИЯ` [Непрямое взаимодействие](/lectures/05-0-lecture_Kafka_intro.pdf).
 - `06-ЛЕКЦИЯ` [Обнаружение отказов](/lectures/06-ЛЕКЦИЯ_Обнаружение%20отказов.pdf).
