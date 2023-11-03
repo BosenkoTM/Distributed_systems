@@ -292,5 +292,5 @@ $ cat Zoom.torrent | pytp | jq '.'
 2. Провести анализ файлов согласно `Пример. 1`.
 3. Проверить работоспособность http трекеров, используя `Пример. 2`.
 4. Организовать раздачу `.torrent` файла (не менее 3).
-5. Провести анализ.
+5. Провести анализ `.torrent` файлов, которые раздаются (DHT, Local Peer Discovery, список трекеров).
 6. Оформить отчет о проделанной работе согласно [ГОСТ 7.32 -2001](https://docs.yandex.ru/docs/view?tm=1698991903&tld=ru&name=%D0%93%D0%9E%D0%A1%D0%A2-7.32-2001.pdf&text=%D0%93%D0%9E%D0%A1%D0%A2%207.32%20-2001&url=http%3A%2F%2Fkaradag.com.ru%2Fstatic%2Fmedia%2Fuploads%2Fdocuments%2F%25D0%2593%25D0%259E%25D0%25A1%25D0%25A2-7.32-2001.pdf&lr=213&mime=pdf&l10n=ru&sign=cb8d0c77912cc1ec10bb1eaa2d97d1ef&keyno=0&serpParams=tm%3D1698991903%26tld%3Dru%26name%3D%25D0%2593%25D0%259E%25D0%25A1%25D0%25A2-7.32-2001.pdf%26text%3D%25D0%2593%25D0%259E%25D0%25A1%25D0%25A2%2B7.32%2B-2001%26url%3Dhttp%253A%2F%2Fkaradag.com.ru%2Fstatic%2Fmedia%2Fuploads%2Fdocuments%2F%2525D0%252593%2525D0%25259E%2525D0%2525A1%2525D0%2525A2-7.32-2001.pdf%26lr%3D213%26mime%3Dpdf%26l10n%3Dru%26sign%3Dcb8d0c77912cc1ec10bb1eaa2d97d1ef%26keyno%3D0).
