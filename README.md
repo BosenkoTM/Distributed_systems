@@ -97,7 +97,7 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 - [Работа с адресами IP сетей](https://disk.yandex.ru/i/huaNfC05bwGgxQ).
 - `Семинар 3`. [Message queue, RabbitMQ.](/d-zadanie/03-mq) (Выполнить на базе кластера `МГПУ`).
 - `Семинар 4`. [Детектор отказов](https://github.com/BosenkoTM/Distributed_systems/tree/main/d-zadanie/06-failure_detection#%D1%81%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80-6-group-membership-%D0%B8-%D0%B4%D0%B5%D1%82%D0%B5%D0%BA%D1%82%D0%BE%D1%80-%D0%BE%D1%82%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2).
-- `Семинар по P2P`. [Семинар по P2P](/seminars/07-peer-to-peer/readme.md) (Выполнить на базе кластера `МГПУ`).
+- `Семинар 5`. [P2P](/seminars/07-peer-to-peer/readme.md) (Выполнить на базе кластера `МГПУ`).
 - `Семинар 6-1`. [First Alpine Linux Containers](https://training.play-with-docker.com/ops-s1-hello/).
 - `Семинар 6-2`. [Docker for Beginners - Linux](https://training.play-with-docker.com/beginner-linux/).
 - `Семинар 7`. [Kafka.](https://github.com/BosenkoTM/kafka),  [Kafka2.](https://github.com/Zabi82/KafkaLab) [Kafka3.](https://github.com/cblanton45/kafka-labs).
