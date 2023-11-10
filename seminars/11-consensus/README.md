@@ -9,7 +9,7 @@
 
 ## Консенсус
 
-- [Слайды с лекции](https://github.com/osukhoroslov/distsys-course-hse/blob/master/2022/lectures/11-consensus.pdf)
+- [Слайды с лекции]()
 - [Разделы 6 и 7 из курса Клеппмана про консенсус](https://www.cl.cam.ac.uk/teaching/2021/ConcDisSys/dist-sys-notes.pdf)
 
 Вопросы:
