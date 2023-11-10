@@ -82,6 +82,23 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 - `14-ЛЕКЦИЯ` [Репликация данных](lectures/)
 
 ## Практические работы задания
+- `01-Практика` [Модель распределенной системы и учебный фреймворк](https://github.com/BosenkoTM/Distributed_systems/tree/main/seminars/01-dslib#%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C-%D1%80%D0%B0%D1%81%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D0%B8-%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9-%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA).
+- `02-Практика` [Прикладные протоколы](https://github.com/BosenkoTM/Distributed_systems/blob/main/seminars/02-protocols/readme.md#%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%BD%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB%D1%8B).
+- `03-Практика` [Протокол HTTP/HTTPS](practice/S-1-%20HTTP).
+- `04-Практика` [Multicast](d-zadanie/04-multicast) (Выполнить на базе кластера `МГПУ`).
+- `05-Практика` [Расчет конфигурации сети Ethernet](https://disk.yandex.ru/i/WSwJSNc6PP3aRg).
+- `06-Практика` [Расчет IPv4-подсетей](https://disk.yandex.ru/i/Bnn0pAECM3T2Mg). 
+- `07-Практика` [Работа с адресами IP сетей](https://disk.yandex.ru/i/huaNfC05bwGgxQ).
+- `08-Практика` [Message queue, RabbitMQ.](/d-zadanie/03-mq) (Выполнить на базе кластера `МГПУ`).
+- `09-Практика` [Детектор отказов](https://github.com/BosenkoTM/Distributed_systems/tree/main/d-zadanie/06-failure_detection#%D1%81%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80-6-group-membership-%D0%B8-%D0%B4%D0%B5%D1%82%D0%B5%D0%BA%D1%82%D0%BE%D1%80-%D0%BE%D1%82%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2).
+- `10-Практика` [P2P](/seminars/07-peer-to-peer/readme.md) (Выполнить на базе кластера `МГПУ`).
+- `11-Практика` [Балансировка_нагрузки_через_nginx]().
+- `12-Практика` [Кэширование в Redis]().
+- `13-Практика` [Репликация данных](practice/S-4-10-replication/pr_replica_single_server.pdf)
+  - [Предварительное создание БД](/practice/S-4-10-replication/db_creator.pdf)
+- `14-Практика` [Consensus](https://github.com/BosenkoTM/Distributed_systems/blob/main/seminars/11-consensus/README.md#consensus).
+        - 
+              - 
 - [practice](https://github.com/BosenkoTM/Distributed_systems/tree/main/seminars).
 
 ## Индивидуальные задания 
@@ -89,28 +106,11 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 
 ## Семинары(доп)
 
-- `Семинар 1`. [Протокол HTTP/HTTPS](practice/S-1-%20HTTP)
-- `Семинар 2`.
-- [Multicast](d-zadanie/04-multicast) (Выполнить на базе кластера `МГПУ`).
-- [Расчет конфигурации сети Ethernet](https://disk.yandex.ru/i/WSwJSNc6PP3aRg).
-- [Расчет IPv4-подсетей](https://disk.yandex.ru/i/Bnn0pAECM3T2Mg). 
-- [Работа с адресами IP сетей](https://disk.yandex.ru/i/huaNfC05bwGgxQ).
-- `Семинар 3`. [Message queue, RabbitMQ.](/d-zadanie/03-mq) (Выполнить на базе кластера `МГПУ`).
-- `Семинар 4`. [Детектор отказов](https://github.com/BosenkoTM/Distributed_systems/tree/main/d-zadanie/06-failure_detection#%D1%81%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80-6-group-membership-%D0%B8-%D0%B4%D0%B5%D1%82%D0%B5%D0%BA%D1%82%D0%BE%D1%80-%D0%BE%D1%82%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2).
-- `Семинар 5`. [P2P](/seminars/07-peer-to-peer/readme.md) (Выполнить на базе кластера `МГПУ`).
-- `Семинар 6-1`. [First Alpine Linux Containers](https://training.play-with-docker.com/ops-s1-hello/).
-- `Семинар 6-2`. [Docker for Beginners - Linux](https://training.play-with-docker.com/beginner-linux/).
-- `Семинар 7`. [Kafka.](https://github.com/BosenkoTM/kafka),  [Kafka2.](https://github.com/Zabi82/KafkaLab) [Kafka3.](https://github.com/cblanton45/kafka-labs).
-- `Семинар 8`. 
-   - [Парадигма Map Reduce - Преподаватель](practice/S-2-09-map-reduce)
-   - [Парадигма Map Reduce - Студент]()
-- `Семинар 9`. [01_HADOOP администрирование](https://github.com/BosenkoTM/ds_practice/tree/main/exercises/winter_semester_2021-2022/05_hadoop)
-  - Решение самостоятельного задания `Семинар 7` [тут](https://github.com/BosenkoTM/ds_practice/tree/main/solutions/winter_semester_2021-2022/05_hadoop)
-  - [02_HADOOP сам_задание](/practice/S-3-HADOOP/2.%20Hadoop%20Lab-1.pdf)
-- `Семинар 10`. [Репликация данных](practice/S-4-10-replication/pr_replica_single_server.pdf)
-  - [Предварительное создание БД](/practice/S-4-10-replication/db_creator.pdf)
-   
 
+- `Семинар 1`. [First Alpine Linux Containers](https://training.play-with-docker.com/ops-s1-hello/).
+- `Семинар 2`. [Docker for Beginners - Linux](https://training.play-with-docker.com/beginner-linux/).
+- `Семинар 3`. [Kafka.](https://github.com/BosenkoTM/kafka),  [Kafka2.](https://github.com/Zabi82/KafkaLab) [Kafka3.](https://github.com/cblanton45/kafka-labs).
+   
 ## ТЕСТ 1. Распределенные системы.  
 
 `06.10.2023 09-10`
