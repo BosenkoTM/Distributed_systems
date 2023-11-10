@@ -81,7 +81,7 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 - `13-ЛЕКЦИЯ` [Требования к распределенных систем, моделям данных и доступа](/lectures/13-Requirements_for_DS.pdf).
 - `14-ЛЕКЦИЯ` [Репликация данных](lectures/)
 
-## Практические работы задания
+## Практические работы
 - `01-Практика` [Модель распределенной системы и учебный фреймворк](https://github.com/BosenkoTM/Distributed_systems/tree/main/seminars/01-dslib#%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C-%D1%80%D0%B0%D1%81%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D0%B8-%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9-%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA).
 - `02-Практика` [Прикладные протоколы](https://github.com/BosenkoTM/Distributed_systems/blob/main/seminars/02-protocols/readme.md#%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%BD%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB%D1%8B).
 - `03-Практика` [Протокол HTTP/HTTPS](practice/S-1-%20HTTP).
