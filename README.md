@@ -97,17 +97,11 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 - `13-Практика` [Репликация данных](practice/S-4-10-replication/pr_replica_single_server.pdf)
   - [Предварительное создание БД](/practice/S-4-10-replication/db_creator.pdf)
 - `14-Практика` [Consensus](https://github.com/BosenkoTM/Distributed_systems/blob/main/seminars/11-consensus/README.md#consensus).
-
-
-## Семинары(доп)
-
-
+## Семинары
 - `Семинар 1`. [First Alpine Linux Containers](https://training.play-with-docker.com/ops-s1-hello/).
 - `Семинар 2`. [Docker for Beginners - Linux](https://training.play-with-docker.com/beginner-linux/).
 - `Семинар 3`. [Kafka.](https://github.com/BosenkoTM/kafka),  [Kafka2.](https://github.com/Zabi82/KafkaLab) [Kafka3.](https://github.com/cblanton45/kafka-labs).
-   
 ## ТЕСТ 1. Распределенные системы.  
-
 `06.10.2023 09-10`
 
 [ССЫЛКА ДЛЯ ВХОДА](https://docs.google.com/forms/d/e/1FAIpQLScEjZmp_Fsx2qGEp-KWWR5L8UfUrZs0GmGJIM_Nd3I0nzbuwg/viewform?embedded=true)
