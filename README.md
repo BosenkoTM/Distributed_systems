@@ -94,8 +94,8 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 - `10-Практика` [P2P](/seminars/07-peer-to-peer/readme.md) (Выполнить на базе кластера `МГПУ`).
 - `11-Практика` [Балансировка_нагрузки_через_nginx]().
 - `12-Практика` [Кэширование в Redis]().
-- `13-Практика` [Репликация данных](practice/S-4-10-replication/pr_replica_single_server.pdf)
-  - [Предварительное создание БД](/practice/S-4-10-replication/db_creator.pdf)
+- `13-Практика` [Репликация данных](practice/S-4-10-replication/pr_replica_single_server.pdf).
+  - [Предварительное создание БД](/practice/S-4-10-replication/db_creator.pdf).
 - `14-Практика` [Consensus](https://github.com/BosenkoTM/Distributed_systems/blob/main/seminars/11-consensus/README.md#consensus).
 ## Семинары
 - `Семинар 1`. [First Alpine Linux Containers](https://training.play-with-docker.com/ops-s1-hello/).
