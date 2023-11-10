@@ -97,12 +97,7 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 - `13-Практика` [Репликация данных](practice/S-4-10-replication/pr_replica_single_server.pdf)
   - [Предварительное создание БД](/practice/S-4-10-replication/db_creator.pdf)
 - `14-Практика` [Consensus](https://github.com/BosenkoTM/Distributed_systems/blob/main/seminars/11-consensus/README.md#consensus).
-        - 
-              - 
-- [practice](https://github.com/BosenkoTM/Distributed_systems/tree/main/seminars).
 
-## Индивидуальные задания 
-- [d-zadanie](https://github.com/BosenkoTM/Distributed_systems/tree/main/d-zadanie ).
 
 ## Семинары(доп)
 
