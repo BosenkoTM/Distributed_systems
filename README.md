@@ -9,16 +9,13 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
    
  `УДАЛЕННОЕ РАБОЧЕЕ МЕСТО`:
    
- - OC **`Ubuntu 20.04`** на базе кластера **`МГПУ`**. Номер РМ студента получить у ведущего лектора. Для работы потребуется клиент [anydesk](  https://anydesk.com/en/downloads/windows).
+ - OC **`Ubuntu 20.04`** на базе кластера **`МГПУ`**. Номер РМ студента получить у ведущего лектора.
    
  `ВИРТУАЛЬНАЯ ГОСТЕВАЯ ОС`:
  
- - `D_System_22` [vm - VirtualBox](https://disk.yandex.ru/d/RTZvbDhtfXInMg), в его комплект входит:
-    - `VirtualBox-6.1.30-148432-Win.exe` - ПО для разворачивания виртуальной ОС; 
-    - `St_work_1.ova` - образ настроенной ОС `Ubuntu 18.04`;
-    - `St_work_Hadoop.ova` - образ настроенной ОС `Ubuntu 18.04 + Hadoop`;
-    - `login.txt`;
-    - `ubuntu-18.04.6-desktop-amd64.iso` - исходный образ ОС.
+ - `Ubuntu 20.04 + docker` [vm - VirtualBox](https://disk.yandex.ru/d/zbZRHJKwiR15qA).
+    - login: mgpu
+    - pass: 1
     
 ## Темы курсовых проектов
    [АДЭУ-211](https://docs.google.com/spreadsheets/d/1vH9CPcBrWd2rGgXVlzg4eaXm8DNor1-3s4Um11_e2hA/edit?usp=sharing)
