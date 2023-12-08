@@ -18,6 +18,10 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
     - pass: 1
     
 ## Темы курсовых проектов
+   
+   <details>
+<summary> Список студентов, регламент выполнения КП</summary>
+      
    [АДЭУ-211](https://docs.google.com/spreadsheets/d/1vH9CPcBrWd2rGgXVlzg4eaXm8DNor1-3s4Um11_e2hA/edit?usp=sharing)
 
    Распределение студентов КР:
@@ -52,6 +56,8 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
  [АДЭУ-201](https://docs.google.com/spreadsheets/d/1NOTUaM9YFTO9QEV7WKDY1KJoWyKj5iSkfVdgChCiw_o/edit?usp=sharing)
 
  [АДЭУ-211](https://docs.google.com/spreadsheets/d/1rwdG4OYKxMX2NpclxNVn-L5Y_67TCcN1Y9awgpJACAA/edit?usp=sharing)
+
+ </details>
 
 ## Вопросы к экзамену
 
