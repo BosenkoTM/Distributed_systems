@@ -55,13 +55,13 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 [Методические рекомендации к выполнению курсового проекта](https://disk.yandex.ru/i/6_ypM5IRQTfpBA)
 
 [Пример-2023](https://disk.yandex.ru/d/p31hgz487lPzzQ)
+
+ </details>
+
 ## Текущая успеваемость
  [АДЭУ-201](https://docs.google.com/spreadsheets/d/1NOTUaM9YFTO9QEV7WKDY1KJoWyKj5iSkfVdgChCiw_o/edit?usp=sharing)
 
  [АДЭУ-211](https://docs.google.com/spreadsheets/d/1rwdG4OYKxMX2NpclxNVn-L5Y_67TCcN1Y9awgpJACAA/edit?usp=sharing)
-
- </details>
-
 ## Вопросы к экзамену(зачет)
 
 <details>
