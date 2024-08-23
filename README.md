@@ -67,7 +67,6 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 <summary> Перечень вопросов</summary>
       
 - [2023-2024](/examp_ds_2022_2023.pdf)
-- [2023-2024](/examp2022/Билеты%20экзамен%20Распределенные%20системы%20ТП-191.pdf)
 
 </details>
 
