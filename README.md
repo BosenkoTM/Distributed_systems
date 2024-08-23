@@ -73,7 +73,14 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 ## Distributed_systems
 
 - `Лекция 1.1. Определение и основные характеристики распределенных систем.` [LMS MGPU](https://lms.mgpu.ru/editor/lesson/6363).
-- `02-ЛЕКЦИЯ` [Взаимодействие в распределенных системах](/f).
+- `Лекция 1.2. Преимущества и вызовы использования распределенных систем в бизнесе.` [LMS MGPU](https://lms.mgpu.ru/editor/lesson/6364).
+- `Лекция 2.1. Клиент-серверная архитектура.` [LMS MGPU](https://lms.mgpu.ru/editor/lesson/6365).
+- `Лекция 2.2. Пиринговая архитектура.` [LMS MGPU](https://lms.mgpu.ru/editor/lesson/6366).
+- `Лекция 2.3. Микросервисная архитектура.` [LMS MGPU](https://lms.mgpu.ru/editor/lesson/6367).
+- `Лекция 3.1 Технологии RPC, gRPC, REST.` [LMS MGPU](https://lms.mgpu.ru/editor/lesson/6368).
+- `Лекция 3.2. Системы сообщений (Apache Kafka, RabbitMQ).` [LMS MGPU](https://lms.mgpu.ru/editor/lesson/6369).
+- `Лекция 4.1. Методы репликации данных.` [LMS MGPU](https://lms.mgpu.ru/editor/lesson/6370).
+
 
 ## Лабораторные работы
 - `01` [Модель распределенной системы и учебный фреймворк](https://github.com/BosenkoTM/Distributed_systems/tree/main/seminars/01-dslib#%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C-%D1%80%D0%B0%D1%81%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D0%B8-%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9-%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA).
