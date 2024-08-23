@@ -133,17 +133,11 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 - [Docker help](/Lectures/docker_help.pdf) 
 
 ### Основная литература
-
-1.	Бабичев, Сергей Леонидович. Распределенные системы [Электронный ресурс]: учеб. пособие для вузов / С. Л. Бабичев, К. А. Коньков. – М. : Юрайт, 2020. https://urait.ru/book/raspredelennye-sistemy-457005 
-2.	Распределенные системы: учебное пособие для студентов, обучающихся по направлению подготовки 38.03.05 Бизнес-информатика / [авт.-сост. А.В. Демина, О.Н. Алексенцева]. 2018. – 108 с. 
-3.	Клеппман М.Высоконагруженные приложения. Программирование, масштабирование, поддержка. — СПб.: Питер, 2018 — 640 с.
+1. Стин ван М., Таненбаум Э. С. Распределенные системы / пер. с англ. В. А. Яроцкого. – М.: ДМК Пресс, 2021. – 584 с.
+2.	Бабичев, Сергей Леонидович. Распределенные системы [Электронный ресурс]( https://urait.ru/book/raspredelennye-sistemy-457005 ): учеб. пособие для вузов / С. Л. Бабичев, К. А. Коньков. – М. : Юрайт, 2020.
+3.	Клеппман М. Высоконагруженные приложения. Программирование, масштабирование, поддержка. — СПб.: Питер, 2018 — 640 с.
 
 ### Дополнительная литература
 
-4.	Austin Parker Distributed Tracing in Practice Instrumenting, Analyzing, and Debugging Microservices, y O’Reilly Media, Inc., 2020
-5.	Sigismondo Boschi RabbitMQ Cookbook Packt Publishing 2013
-6.	Burns, B. (2018). Designing Distributed Systems : Patterns and Paradigms for Scalable, Reliable Services (Vol. First edition). Sebastopol, CA: O’Reilly Media. Retrieved from http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&db=edsebk&AN=1713745
-7.	Kleppmann, M. (2017). Designing Data-Intensive Applications : The Big Ideas Behind Reliable, Scalable, and Maintainable Systems. Sebastopol, CA: O’Reilly Media. Retrieved from http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&db=edsebk&AN=1487643
-8. Petrov, A., & O’Reilly for Higher Education (Firm). (2019).
-8. Database Internals : A Deep Dive Into How Distributed Data Systems Work (Vol. First edition). Sebastopol, CA: O’Reilly Media. Retrieved from http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&db=edsebk&AN=2250514
-
+4. Kuzmiakova A. Concurrent, Parallel and Distributed Computing. e-book Edition. - 2023. [скачать](https://disk.yandex.ru/i/T8BDKnkiNTe9TQ).
+5. Molkova L. Modern Distributed Tracing in .NET. Packt Publishing. - 2023.  [скачать](https://disk.yandex.ru/i/epxlOMked21fMw).
