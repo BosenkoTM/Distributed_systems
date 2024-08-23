@@ -82,15 +82,14 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 - `Лекция 4.1.` Методы репликации данных. [LMS MGPU](https://lms.mgpu.ru/editor/lesson/6370).
 
 ## Лабораторные работы
-- `01` [Модель распределенной системы и учебный фреймворк](https://github.com/BosenkoTM/Distributed_systems/tree/main/seminars/01-dslib#%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C-%D1%80%D0%B0%D1%81%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D0%B8-%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9-%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA).
-- `02` [Прикладные протоколы](https://github.com/BosenkoTM/Distributed_systems/blob/main/seminars/02-protocols/readme.md#%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%BD%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB%D1%8B).
-- `03` [Протокол HTTP/HTTPS](practice/S-1-%20HTTP).
-- `04` [Multicast](d-zadanie/04-multicast) (Выполнить на базе кластера `МГПУ`).
 
-## Семинары
-- `Семинар 1`. [First Alpine Linux Containers](https://training.play-with-docker.com/ops-s1-hello/).
-- `Семинар 2`. [Docker for Beginners - Linux](https://training.play-with-docker.com/beginner-linux/).
-- `Семинар 3`. [Kafka.](https://github.com/BosenkoTM/kafka),  [Kafka2.](https://github.com/Zabi82/KafkaLab) [Kafka3.](https://github.com/cblanton45/kafka-labs).
+- `ЛР-1` Установка и настройка распределенной системы (например, Arenadata Hadoop или Apache Spark). Простейшие операции и знакомство с функциональностью системы. [LMS MGPU](https://lms.mgpu.ru/editor/assignment/2303).
+- `ЛР-2` Проектирование и реализация простой клиент-серверной системы. Пример микросервисной архитектуры и ее применение в бизнес-приложениях. [LMS MGPU](https://lms.mgpu.ru/editor/assignment/2304).
+- `ЛР-3` Создание системы сообщений с использованием Apache Kafka. Примеры использования gRPC для взаимодействия между сервисами. [LMS MGPU](https://lms.mgpu.ru/editor/assignment/2305).
+- `ЛР-4` Настройка репликации данных в распределенной базе данных (например, MongoDB). Исследование и применение различных стратегий консистентности данных. [LMS MGPU](https://lms.mgpu.ru/editor/assignment/2306).
+- `ЛР-5` Реализация механизмов безопасности в распределенной системе (например, аутентификация и шифрование данных). Настройка и тестирование отказоустойчивой системы. [LMS MGPU](https://lms.mgpu.ru/editor/assignment/2307).
+- `ЛР-6` Проектирование и реализация распределенной системы для бизнес-задачи (например, анализ больших данных). Применение облачных технологий для развертывания и управления распределенной системой. [LMS MGPU](https://lms.mgpu.ru/editor/assignment/2308).
+
 ## ТЕСТ 1. Распределенные системы.  
 `04.10.2024 10-30`
 
