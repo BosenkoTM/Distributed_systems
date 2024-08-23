@@ -25,14 +25,14 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
    <details>
 <summary> Список студентов, регламент выполнения КП</summary>
       
-   [АДЭУ-211](https://docs.google.com/spreadsheets/d/1vH9CPcBrWd2rGgXVlzg4eaXm8DNor1-3s4Um11_e2hA/edit?usp=sharing)
+   [АДЭУ-221](https://docs.google.com/spreadsheets/d/1vH9CPcBrWd2rGgXVlzg4eaXm8DNor1-3s4Um11_e2hA/edit?usp=sharing)
 
    Распределение студентов КР:
-[АДЭУ-211](/kp/УтвКП_АДЭУ-211-2023.pdf)
+[АДЭУ-211](/kp/)
    
    | ФИО  | Дата представления КП |
 | --------------| :---: |
-|   | 01.12.2023    |
+|   | 01.12.2024    |
 
    
    ### Регламент написания и защиты курсового проекта.
@@ -54,14 +54,13 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 
 [Методические рекомендации к выполнению курсового проекта](https://disk.yandex.ru/i/6_ypM5IRQTfpBA)
 
-[Пример-2023](https://disk.yandex.ru/d/p31hgz487lPzzQ)
+[Пример-2024](https://disk.yandex.ru/d/p31hgz487lPzzQ)
 
  </details>
 
 ## Текущая успеваемость
- [АДЭУ-201](https://docs.google.com/spreadsheets/d/1NOTUaM9YFTO9QEV7WKDY1KJoWyKj5iSkfVdgChCiw_o/edit?usp=sharing)
+ [АДЭУ-221](https://docs.google.com/spreadsheets/d/1NOTUaM9YFTO9QEV7WKDY1KJoWyKj5iSkfVdgChCiw_o/edit?usp=sharing)
 
- [АДЭУ-211](https://docs.google.com/spreadsheets/d/1rwdG4OYKxMX2NpclxNVn-L5Y_67TCcN1Y9awgpJACAA/edit?usp=sharing)
 ## Вопросы к экзамену(зачет)
 
 <details>
@@ -112,7 +111,7 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 - `Семинар 2`. [Docker for Beginners - Linux](https://training.play-with-docker.com/beginner-linux/).
 - `Семинар 3`. [Kafka.](https://github.com/BosenkoTM/kafka),  [Kafka2.](https://github.com/Zabi82/KafkaLab) [Kafka3.](https://github.com/cblanton45/kafka-labs).
 ## ТЕСТ 1. Распределенные системы.  
-`06.10.2023 09-10`
+`04.10.2024 10-30`
 
 [ССЫЛКА ДЛЯ ВХОДА](https://docs.google.com/forms/d/e/1FAIpQLScEjZmp_Fsx2qGEp-KWWR5L8UfUrZs0GmGJIM_Nd3I0nzbuwg/viewform?embedded=true)
 
@@ -121,7 +120,7 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 `Глава 1` - `Глава 2` Учебник [Бабичев С. Л](https://urait.ru/book/raspredelennye-sistemy-445188)
 
 ## ТЕСТ 2. Распределенные системы. 
-`24.11.2023`
+`01.11.2024 10-30`
 
 [ССЫЛКА ДЛЯ ВХОДА](https://docs.google.com/forms/d/e/1FAIpQLScx-U2XsIRvTkMHWHqbu15K9I9lNxc-n2NCgK-PiC22B0BTzA/viewform?embedded=true)
 
