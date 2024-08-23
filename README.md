@@ -74,37 +74,14 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 
 - `01-ЛЕКЦИЯ` [Введение](lectures/1-intro.pdf).
 - `02-ЛЕКЦИЯ` [Взаимодействие в распределенных системах](/lectures/02-ЛЕКЦИЯ_Взаимодействие%20между.pdf).
-- `03-ЛЕКЦИЯ` [HTTP и веб-сервисы](/lectures/03-ЛЕКЦИЯ_HTTP%20и%20веб-сервисы.pdf).
-- `04-ЛЕКЦИЯ` [Групповые взаимодействия](lectures//lectures/04-ЛЕКЦИЯ_Групповые%20взаимодействия.pdf).
-- `05-ЛЕКЦИЯ` [Непрямое взаимодействие](/lectures/05-ЛЕКЦИЯ_Непрямое%20взаимодействие.pdf).
-- `06-ЛЕКЦИЯ` [Обнаружение отказов](/lectures/06-ЛЕКЦИЯ_Обнаружение%20отказов.pdf).
-- `07-ЛЕКЦИЯ` [Именование и поиск](lectures/).
-- `08-ЛЕКЦИЯ` [Масштабирование](/lectures/Распределенные%20системы_%20горизонтальное%20масштабирование%20(лекция%208-0).pdf).
-- `09-ЛЕКЦИЯ` [Кэширование в распределенных системах](/lectures/Распределенные%20системы_%20горизонтальное%20масштабирование%20(лекция%208-0).pdf).
-- `10-ЛЕКЦИЯ` [Масштабирование БД](/lectures/Масштабирование%20БД%20(лекция%2010).pdf).
-- `11-ЛЕКЦИЯ` [Параллельная обработка](/lectures/Распределенные%20системы_%20кэширование%20(лекция%208-1)—%20копия.pdf).
-- `12-ЛЕКЦИЯ` [docker-indirect](/lectures/11-docker-indirect-comm.pdf).
-- `13-ЛЕКЦИЯ` [Требования к распределенных систем, моделям данных и доступа](/lectures/13-Requirements_for_DS.pdf).
-- `14-ЛЕКЦИЯ`
-- [Репликация данных-1](https://github.com/BosenkoTM/Distributed_systems/blob/main/lectures/10-%D0%9B%D0%95%D0%9A%D0%A6%D0%98%D0%AF_%D0%A0%D0%B5%D0%BF%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85.pdf).
-- [Репликация данных-2](https://github.com/BosenkoTM/Distributed_systems/blob/main/lectures/10-1%20%D0%A0%D0%B5%D0%BF%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F.pdf).
 
-## Практические работы
-- `01-Практика` [Модель распределенной системы и учебный фреймворк](https://github.com/BosenkoTM/Distributed_systems/tree/main/seminars/01-dslib#%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C-%D1%80%D0%B0%D1%81%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D0%B8-%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9-%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA).
-- `02-Практика` [Прикладные протоколы](https://github.com/BosenkoTM/Distributed_systems/blob/main/seminars/02-protocols/readme.md#%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%BD%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB%D1%8B).
-- `03-Практика` [Протокол HTTP/HTTPS](practice/S-1-%20HTTP).
-- `04-Практика` [Multicast](d-zadanie/04-multicast) (Выполнить на базе кластера `МГПУ`).
-- `05-Практика` [Расчет конфигурации сети Ethernet](https://disk.yandex.ru/i/WSwJSNc6PP3aRg).
-- `06-Практика` [Расчет IPv4-подсетей](https://disk.yandex.ru/i/Bnn0pAECM3T2Mg). 
-- `07-Практика` [Работа с адресами IP сетей](https://disk.yandex.ru/i/huaNfC05bwGgxQ).
-- `08-Практика` [Message queue, RabbitMQ.](/d-zadanie/03-mq) (Выполнить на базе кластера `МГПУ`).
-- `09-Практика` [Детектор отказов](https://github.com/BosenkoTM/Distributed_systems/tree/main/d-zadanie/06-failure_detection#%D1%81%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80-6-group-membership-%D0%B8-%D0%B4%D0%B5%D1%82%D0%B5%D0%BA%D1%82%D0%BE%D1%80-%D0%BE%D1%82%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2).
-- `10-Практика` [P2P](/seminars/07-peer-to-peer/readme.md) (Выполнить на базе кластера `МГПУ`).
-- `11-Практика` [Балансировка_нагрузки_через_nginx](https://github.com/BosenkoTM/Distributed_systems/blob/main/seminars/%D0%91%D0%B0%D0%BB%D0%B0%D0%BD%D1%81%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0_%D0%BD%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8_%D1%87%D0%B5%D1%80%D0%B5%D0%B7_nginx.md).Или альтернативная работа [тут](https://github.com/BosenkoTM/Distributed_systems/tree/main/seminars/08-balancing-sharding).
-- `12-Практика` [Кэширование в Redis](https://github.com/BosenkoTM/Distributed_systems/blob/main/seminars/%D0%9A%D1%8D%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%20Redis.md). 
-- `13-Практика` [Репликация данных](practice/S-4-10-replication/pr_replica_single_server.pdf).
-  - [Предварительное создание БД](/practice/S-4-10-replication/db_creator.pdf).
-- `14-Практика` [Consensus](https://github.com/BosenkoTM/Distributed_systems/blob/main/seminars/11-consensus/README.md#consensus).
+
+## Лабораторные работы
+- `01` [Модель распределенной системы и учебный фреймворк](https://github.com/BosenkoTM/Distributed_systems/tree/main/seminars/01-dslib#%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C-%D1%80%D0%B0%D1%81%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D0%B8-%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9-%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA).
+- `02` [Прикладные протоколы](https://github.com/BosenkoTM/Distributed_systems/blob/main/seminars/02-protocols/readme.md#%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%BD%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB%D1%8B).
+- `03` [Протокол HTTP/HTTPS](practice/S-1-%20HTTP).
+- `04` [Multicast](d-zadanie/04-multicast) (Выполнить на базе кластера `МГПУ`).
+
 ## Семинары
 - `Семинар 1`. [First Alpine Linux Containers](https://training.play-with-docker.com/ops-s1-hello/).
 - `Семинар 2`. [Docker for Beginners - Linux](https://training.play-with-docker.com/beginner-linux/).
