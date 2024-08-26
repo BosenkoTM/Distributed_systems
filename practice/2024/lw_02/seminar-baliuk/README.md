@@ -1,4 +1,4 @@
-# 03. HTTP
+# 02. HTTP
 
 ## Протокол HTTP
 
@@ -262,4 +262,4 @@ TCP соединение держится активным и становитс
 
 Попробуем с помощью nginx сделать раздачу статики и балансировку по бэкендам.
 
-Подробнее [тут](https://github.com/osukhoroslov/distsys-course-hse/tree/2023/seminars/03-http#nginx).
+Подробнее [тут](https://github.com/BosenkoTM/Distributed_systems/blob/main/practice/2024/lw_02/readme.md#http-%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D1%8B).
