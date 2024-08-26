@@ -534,3 +534,291 @@ http://yabs.yandex.ru/count/WSuejI_zO6q19Gu051Stei35Lkz4TWK0RG8GWhY04343bbPV0000
 ```
 
 По ней можно кликнуть и где-то на серверах рекламы будет записан лог о том, что вы как пользователь кликнули по заголовку. Совершенно непонятно, что происходит. И на самом деле, простому пользователю и не должно быть понятно. Это далеко от CRUD (хотя бы потому, что почти Read-Only), однако это тоже можно назвать RESTful API, потому что соблюдаются основные принципы.
+
+
+### Индивидуальное задание
+
+
+#### Оборудование и ПО:
+- Операционная система Ubuntu, OS X.
+- Установленные пакеты `telnet`, `curl`, `nginx`.
+- Установленный интерпретатор Python (для реализации REST API)
+- Инструменты командной строки (curl, wget, telnet)
+- Доступ к интернету.
+
+#### Теоретическая часть.
+1. **HTTP-запросы и ответы:** изучение структуры HTTP-запросов (методы GET, POST, PUT, DELETE и т.д.) и ответов (коды статуса, заголовки и тело ответа).
+2. **Telnet:** инструмент для отправки HTTP-запросов на определенные порты и получения ответов. Позволяет вручную взаимодействовать с HTTP-сервером.
+3. **Curl:** мощный инструмент командной строки для передачи данных с URL. Поддерживает различные протоколы, включая HTTP/HTTPS.
+4. **nginx:** популярный HTTP-сервер, поддерживающий высокую производительность и гибкость в настройке.
+5. **REST и RESTful API:** архитектурный стиль для создания веб-сервисов, использующий HTTP и методы GET, POST, PUT, DELETE для взаимодействия с ресурсами.
+
+#### Ход работы:
+
+##### Шаг 1: Установка необходимых инструментов
+
+1.1. Установите `telnet` и `curl`, если они не установлены:
+```bash
+sudo apt-get update
+sudo apt-get install telnet curl
+```
+
+1.2. Установите и настройте nginx:
+```bash
+sudo apt-get install nginx
+sudo systemctl start nginx
+sudo systemctl enable nginx
+```
+
+##### Шаг 2: Анализ HTTP-запросов через telnet
+
+2.1. Откройте терминал и подключитесь к HTTP-серверу через telnet:
+```bash
+telnet <доменное_имя> 80
+```
+Пример для домена `example.com`:
+```bash
+telnet example.com 80
+```
+
+2.2. Отправьте HTTP-запрос вручную, например, запрос типа GET:
+```bash
+GET / HTTP/1.1
+Host: example.com
+```
+
+2.3. Анализируйте полученный ответ сервера: статусный код, заголовки и тело ответа.
+
+##### Шаг 3: Использование curl для отправки HTTP-запросов
+
+3.1. Отправьте простой GET-запрос с использованием curl:
+```bash
+curl http://example.com
+```
+
+3.2. Отправьте POST-запрос с данными:
+```bash
+curl -X POST http://example.com/resource -d "param1=value1&param2=value2"
+```
+
+3.3. Используйте опции curl для вывода заголовков ответа:
+```bash
+curl -I http://example.com
+```
+
+##### Шаг 4: Настройка и анализ HTTP-сервера nginx
+
+4.1. Откройте файл конфигурации nginx:
+```bash
+sudo nano /etc/nginx/sites-available/default
+```
+
+4.2. Настройте сервер для работы с определенным доменом и добавьте необходимые директивы.
+
+4.3. Перезапустите nginx:
+```bash
+sudo systemctl restart nginx
+```
+
+4.4. Проверьте работоспособность сервера с помощью curl:
+```bash
+curl http://localhost
+```
+
+##### Шаг 5: Изучение REST и RESTful API
+
+5.1. Настройте простой REST API на сервере nginx с использованием curl и конфигурационных файлов nginx.
+
+5.2. Создайте тестовые GET и POST запросы к вашему API и проверьте их работоспособность через curl.
+
+
+##### Шаг 6: Установка и базовая настройка nginx
+
+6.1. Установите nginx:
+```bash
+sudo apt-get update
+sudo apt-get install nginx
+```
+
+6.2. Проверьте статус работы nginx:
+```bash
+sudo systemctl status nginx
+```
+
+6.3. Откройте конфигурационный файл nginx для редактирования:
+```bash
+sudo nano /etc/nginx/sites-available/default
+```
+
+6.4. Настройте виртуальный хост для обработки запросов к вашему лока��ьному сайту:
+```nginx
+server {
+    listen 80;
+    server_name localhost;
+
+    location / {
+        root /var/www/html;
+        index index.html index.htm;
+    }
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:5000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+6.5. Перезапустите nginx для применения настроек:
+```bash
+sudo systemctl restart nginx
+```
+
+##### Шаг 7: Реализация простого REST API на Python
+
+71. Установите Python и необходимые модули:
+```bash
+sudo apt-get install python3 python3-pip
+pip3 install flask
+```
+
+72. Создайте простой Flask API:
+```python
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+# Пример ресурсов
+data = {
+    "items": [
+        {"id": 1, "name": "Item 1", "description": "Description of Item 1"},
+        {"id": 2, "name": "Item 2", "description": "Description of Item 2"},
+    ]
+}
+
+@app.route('/api/items', methods=['GET'])
+def get_items():
+    return jsonify(data)
+
+@app.route('/api/items/<int:item_id>', methods=['GET'])
+def get_item(item_id):
+    item = next((item for item in data['items'] if item['id'] == item_id), None)
+    if item:
+        return jsonify(item)
+    return jsonify({"error": "Item not found"}), 404
+
+@app.route('/api/items', methods=['POST'])
+def create_item():
+    new_item = request.json
+    data['items'].append(new_item)
+    return jsonify(new_item), 201
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+73. Запустите Flask API на порту 5000:
+```bash
+python3 app.py
+```
+
+##### Шаг 8: Тестирование работы REST API через nginx
+
+8.1. Используйте curl для взаимодействия с API через nginx:
+```bash
+# Получение списка всех элементов
+curl http://localhost/api/items
+
+# Получение конкретного элемента
+curl http://localhost/api/items/1
+
+# Создание нового элемента
+curl -X POST -H "Content-Type: application/json" -d '{"id":3,"name":"Item 3","description":"Description of Item 3"}' http://localhost/api/items
+```
+
+8.2. Проверьте, как nginx передает запросы от клиента к Flask-серверу и возвращает ответ.
+
+##### Шаг 9: Разработка RESTful API и его настройка
+
+8.1. Добавьте дополнительные маршруты и методы для обработки PUT и DELETE запросов в ваш API.
+
+4.2. Настройте nginx для обработки CORS-запросов (если необходимо) и добавьте правила кеширования, если API будет использоваться на production сервере.
+
+4.3. Убедитесь, что все методы работают корректно через тестирование с curl или через инструмент Postman.
+
+#### Отчет по лабораторной работе.
+Отчет должен включать:
+1. Описание настройки nginx и API.
+2. Пример конфигурационных файлов и кода API.
+3. Результаты тестирования API через curl.
+4. Выводы о работе REST API через nginx.
+
+
+#### Варианты заданий HTTP-запросы
+1. Анализ главной страницы `yandex.ru` с помощью telnet.
+2. Запрос погоды на `weather.yandex.ru` через curl.
+3. Отправка POST-запроса к API `vk.com`.
+4. Получение курса валют с сайта `cbr.ru` с помощью curl.
+5. Проверка доступности сайта `lenta.ru` через telnet.
+6. Анализ заголовков ответа сервера на `mail.ru`.
+7. Запрос списка новостей с `rbc.ru`.
+8. Отправка POST-запроса к API `sberbank.ru`.
+9. Получение списка статей с `ria.ru`.
+10. Запрос текущих котировок акций на `moex.com`.
+11. Проверка состояния сайта `gazeta.ru`.
+12. Анализ HTTP-ответов на `tass.ru`.
+13. Получение списка товаров с `ozon.ru`.
+14. Отправка запроса к API `rosbank.ru`.
+15. Анализ главной страницы `kommersant.ru`.
+16. Запрос информации о рейсах с сайта `aeroflot.ru`.
+17. Отправка GET-запроса к API `yandex.maps`.
+18. Получение информации с сайта `alrosa.ru`.
+19. Запрос данных о недвижимости на `cian.ru`.
+20. Проверка состояния сервера на `rzd.ru`.
+21. Получение расписания поездов на `yandex.ru/rasp`.
+22. Запрос информации о кредитах на `vtb.ru`.
+23. Анализ главной страницы `banki.ru`.
+24. Запрос данных о тарифах с сайта `beeline.ru`.
+25. Проверка доступности сайта `tinkoff.ru`.
+
+#### Варианты для студентов REST API или RESTful API через nginx
+
+Создать конфигурацию nginx и REST API, которая будет взаимодействовать с указанным сайтом или API. 
+
+1. Интеграция с API погоды от `weather.yandex.ru`.
+2. Интеграция с API новостей от `newsapi.org` (с русскоязычными источниками).
+3. Создание REST API для управления данными о фильмах с `kinopoisk.ru`.
+4. Настройка nginx для кэширования данных с `mail.ru`.
+5. Создание API для получения курса валют с `cbr.ru`.
+6. Интеграция с API сервиса `dadata.ru`.
+7. Настройка nginx для обратного проксирования запросов к API `mos.ru`.
+8. Реализация REST API для получения данных о товарах с `ozon.ru`.
+9. Создание API для доступа к новостям с `rbc.ru`.
+10. Настройка nginx для работы с API `vk.com`.
+11. Создание API для получения данных о текущих курсах акций с `moex.com`.
+12. Интеграция с API `sberbank.ru`.
+13. Настройка nginx для кеширования и балансировки запросов на `gazeta.ru`.
+14. Создание REST API для работы с ресурсами `ria.ru`.
+15. Настройка nginx для обработки запросов на `yandex.maps`.
+16. Интеграция с API `tass.ru`.
+17. Создание API для работы с данными о рейсах `aeroflot.ru`.
+18. Интеграция с API `rzd.ru`.
+19. Настройка nginx для обработки данных с `kommersant.ru`.
+20. Создание REST API для обработки данных с `cian.ru`.
+21. Интеграция с API `alrosa.ru`.
+22. Настройка и тестирование работы с API `beeline.ru`.
+23. Создание API для управления данными о кредитах с `tinkoff.ru`.
+24. Интеграция с API `rosbank.ru`.
+25. Настройка nginx для работы с API `vtb.ru`
+
+#### Отчет по лабораторной работе
+В отчете должны быть представлены:
+1. Описание каждого шага работы.
+2. Результаты выполнения HTTP-запросов через telnet и curl.
+3. Настройки конфигурационных файлов nginx.
+4. Результаты работы с REST и RESTful API.
+5. Выводы по проведенной работе.
+
+
