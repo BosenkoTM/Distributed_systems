@@ -10,14 +10,10 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
    
  `УДАЛЕННОЕ РАБОЧЕЕ МЕСТО`:
    
- - OC **`Ubuntu 20.04`** на базе кластера **`МГПУ`**. Номер РМ студента получить у ведущего лектора.
+ - OC **`Ubuntu 24.04`** на базе кластера **`МГПУ`**. Номер РМ студента получить у ведущего лектора.
    
  `ВИРТУАЛЬНАЯ ГОСТЕВАЯ ОС`:
- 
- - `Ubuntu 20.04 + docker` [vm - VirtualBox](https://disk.yandex.ru/d/zbZRHJKwiR15qA).
-    - login: mgpu
-    - pass: 1
-
+ - `Ubuntu 24.04` [vm - VirtualBox](https://disk.yandex.ru/d/5DqoTFsuPXZN9Q).
 </details>
     
 ## Темы курсовых проектов
