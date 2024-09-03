@@ -83,7 +83,14 @@ Trying 91.215.42.162:80...
 < Content-Length: 568
 <
 * Connection #0 to host mgpu.ru left intact
-<!DOCTYPE html><html lang=en><meta charset=utf-8><meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width"><title>Error 301</title><style>*{margin:0;padding:0}html{font:15px/22px arial,sans-serif;background: #fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}p{margin:11px 0 22px;overflow :hidden}ins{color:#777;text-decoration :none;}</style><p><b>301 - Moved Permanently .</b> <ins>That’s an error.</ins><p>Requested content has been permanently moved.  <ins>That’s all we know.</ins>
+<!DOCTYPE html>
+<html lang=en><meta charset=utf-8>
+<meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width">
+<title>Error 301</title><style>*{margin:0;padding:0}html{font:15px/22px arial,sans-serif;background: #fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}p{margin:11px 0 22px;overflow :hidden}ins{color:#777;text-decoration :none;}
+</style><p><b>301 - Moved Permanently .</b>
+<ins>That’s an error.</ins>
+<p>Requested content has been permanently moved.
+ <ins>That’s all we know.</ins>
   ```
 
 </details>
