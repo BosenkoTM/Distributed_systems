@@ -626,7 +626,7 @@ sudo systemctl status nginx
 sudo nano /etc/nginx/sites-available/default
 ```
 
-6.4. Настройте виртуальный хост для обработки запросов к вашему лока��ьному сайту:
+6.4. Настройте виртуальный хост для обработки запросов к вашему локальному сайту:
 ```nginx
 server {
     listen 80;
