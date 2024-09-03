@@ -66,35 +66,24 @@ Content-Length: 568
   <summary><code>$ curl -v http://mgpu.ru/</code></summary>
 
   ```http
-  *   Trying 186.2.163.228...
-  * TCP_NODELAY set
-  * Connected to hse.ru (186.2.163.228) port 80 (#0)
-  > GET / HTTP/1.1
-  > Host: hse.ru
-  > User-Agent: curl/7.64.1
-  > Accept: */*
-  >
-  < HTTP/1.1 301 Moved Permanently
-  < Server: ddos-guard
-  < Connection: keep-alive
-  < Keep-Alive: timeout=60
-  < Set-Cookie: __ddg1=8HeglgfPGcjsXZoLYU5J; Domain=.hse.ru; HttpOnly; Path=/; Expires=Mon, 23-Aug-2021 10:01:38 GMT
-  < Date: Sun, 23 Aug 2020 10:01:38 GMT
-  < Content-Type: text/html
-  < Content-Length: 162
-  < Location: https://www.hse.ru/
-  < Strict-Transport-Security: max-age=15552000
-  < X-XSS-Protection: 1; mode=block; report=https://www.hse.ru/n/api/xss/report
-  <
-  <html>
-  <head><title>301 Moved Permanently</title></head>
-  <body>
-  <center><h1>301 Moved Permanently</h1></center>
-  <hr><center>nginx</center>
-  </body>
-  </html>
-  * Connection #0 to host hse.ru left intact
-  * Closing connection 0
+Trying 91.215.42.162:80...
+* Connected to mgpu.ru (91.215.42.162) port 80
+> GET / HTTP/1.1
+> Host: mgpu.ru
+> User-Agent: curl/8.5.0
+> Accept: */*
+>
+< HTTP/1.1 301 Moved Permanently
+< Server: ddos-guard
+< Date: Tue, 03 Sep 2024 16:48:07 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=60
+< Location: https://mgpu.ru/
+< Content-Type: text/html; charset=utf-8
+< Content-Length: 568
+<
+* Connection #0 to host mgpu.ru left intact
+<!DOCTYPE html><html lang=en><meta charset=utf-8><meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width"><title>Error 301</title><style>*{margin:0;padding:0}html{font:15px/22px arial,sans-serif;background: #fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}p{margin:11px 0 22px;overflow :hidden}ins{color:#777;text-decoration :none;}</style><p><b>301 - Moved Permanently .</b> <ins>That’s an error.</ins><p>Requested content has been permanently moved.  <ins>That’s all we know.</ins>
   ```
 
 </details>
