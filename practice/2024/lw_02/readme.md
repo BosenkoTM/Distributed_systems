@@ -46,8 +46,7 @@ Keep-Alive: timeout=60
 Location: https://mgpu.ru/
 Content-Type: text/html; charset=utf-8
 Content-Length: 568
-
-
+ 
 <!DOCTYPE html
 ><html lang=en><meta charset=utf-8>
 <meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width">
