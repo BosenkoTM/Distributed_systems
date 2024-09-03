@@ -155,77 +155,72 @@ Trying 91.215.42.162:80...
 
 </details>
 
-Тут мы видим 302 в ответе, это похоже на 301, но 302 говорит о том, что для данного запроса был найден новый путь, куда надо проследовать и возможно повторный запрос даст 302 на другую страницу (такое бывает). В ответе видно, что сервер решил, что мы англоязычный клиент и хотим читать английскую версию сайта вышки. Ну действительно, давайте сделаем запрос туда и получим свой долгожданный 200.
+Видим, что нас опять просят проследовать по новому URL `HTTP/2 301` `location: https://www.mgpu.ru/`.
 
 <details>
-  <summary><code>$ curl -v https://www.hse.ru/en/ > /dev/null</code></summary>
+  <summary><code>$ curl -v [https://www.hse.ru/en/](https://www.mgpu.ru/) > /dev/null</code></summary>
 
   ```
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 186.2.163.228...
-  * TCP_NODELAY set
-  * Connected to www.hse.ru (186.2.163.228) port 443 (#0)
-  * ALPN, offering h2
-  * ALPN, offering http/1.1
-  * successfully set certificate verify locations:
-  *   CAfile: /etc/ssl/cert.pem
-    CApath: none
-  * TLSv1.2 (OUT), TLS handshake, Client hello (1):
-  } [224 bytes data]
-  * TLSv1.2 (IN), TLS handshake, Server hello (2):
-  { [102 bytes data]
-  * TLSv1.2 (IN), TLS handshake, Certificate (11):
-  { [3143 bytes data]
-  * TLSv1.2 (IN), TLS handshake, Server key exchange (12):
-  { [300 bytes data]
-  * TLSv1.2 (IN), TLS handshake, Server finished (14):
-  { [4 bytes data]
-  * TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
-  } [37 bytes data]
-  * TLSv1.2 (OUT), TLS change cipher, Change cipher spec (1):
-  } [1 bytes data]
-  * TLSv1.2 (OUT), TLS handshake, Finished (20):
-  } [16 bytes data]
-  * TLSv1.2 (IN), TLS change cipher, Change cipher spec (1):
-  { [1 bytes data]
-  * TLSv1.2 (IN), TLS handshake, Finished (20):
-  { [16 bytes data]
-  * SSL connection using TLSv1.2 / ECDHE-RSA-AES128-GCM-SHA256
-  * ALPN, server accepted to use h2
-  * Server certificate:
-  *  subject: CN=*.hse.ru
-  *  start date: Dec 26 00:00:00 2019 GMT
-  *  expire date: Jan 29 23:59:59 2022 GMT
-  *  subjectAltName: host "www.hse.ru" matched cert's "*.hse.ru"
-  *  issuer: C=GB; ST=Greater Manchester; L=Salford; O=Sectigo Limited; CN=Sectigo RSA Domain Validation Secure Server CA
-  *  SSL certificate verify ok.
-  * Using HTTP2, server supports multi-use
-  * Connection state changed (HTTP/2 confirmed)
-  * Copying HTTP/2 data in stream buffer to connection buffer after upgrade: len=0
-  * Using Stream ID: 1 (easy handle 0x7ff027809600)
-  > GET /en/ HTTP/2
-  > Host: www.hse.ru
-  > User-Agent: curl/7.64.1
-  > Accept: */*
-  >
-  * Connection state changed (MAX_CONCURRENT_STREAMS == 128)!
-  < HTTP/2 200
-  < server: ddos-guard
-  < set-cookie: __ddg1=bWr5vdSQhD8iGiaWrhYU; Domain=.hse.ru; HttpOnly; Path=/; Expires=Mon, 23-Aug-2021 10:13:40 GMT
-  < date: Sun, 23 Aug 2020 10:13:40 GMT
-  < content-type: text/html; charset=utf-8
-  < content-length: 75220
-  < etag: W/"125d4-VK+jGtkklHf8JJZyie9Jwn3mgN4"
-  < x-ireland-cache-status: HIT
-  < strict-transport-security: max-age=15552000
-  < x-xss-protection: 1; mode=block; report=https://www.hse.ru/n/api/xss/report
-  < set-cookie: tracking=ZEsKBF9CQVSv/Z/6A9lzAg==; expires=Thu, 31-Dec-37 23:55:55 GMT; domain=.hse.ru; path=/
-  <
-  { [15922 bytes data]
-  100 75220  100 75220    0     0   773k      0 --:--:-- --:--:-- --:--:--  773k
-  * Connection #0 to host www.hse.ru left intact
-  * Closing connection 0
+ * Host www.mgpu.ru:443 was resolved.
+* IPv6: (none)
+* IPv4: 91.215.42.162
+*   Trying 91.215.42.162:443...
+* Connected to www.mgpu.ru (91.215.42.162) port 443
+* ALPN: curl offers h2,http/1.1
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+*  CAfile: /etc/ssl/certs/ca-certificates.crt
+*  CApath: /etc/ssl/certs
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_128_GCM_SHA256 / X25519 / RSASSA-PSS
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=*.mgpu.ru
+*  start date: Mar 13 08:14:39 2024 GMT
+*  expire date: Apr 14 08:14:38 2025 GMT
+*  subjectAltName: host "www.mgpu.ru" matched cert's "*.mgpu.ru"
+*  issuer: C=BE; O=GlobalSign nv-sa; CN=GlobalSign GCC R6 AlphaSSL CA 2023
+*  SSL certificate verify ok.
+*   Certificate level 0: Public key type RSA (2048/112 Bits/secBits), signed using sha256Wit                         hRSAEncryption
+*   Certificate level 1: Public key type RSA (2048/112 Bits/secBits), signed using sha256Wit                         hRSAEncryption
+*   Certificate level 2: Public key type RSA (4096/152 Bits/secBits), signed using sha384Wit                         hRSAEncryption
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://www.mgpu.ru/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: www.mgpu.ru]
+* [HTTP/2] [1] [:path: /]
+* [HTTP/2] [1] [user-agent: curl/8.5.0]
+* [HTTP/2] [1] [accept: */*]
+> GET / HTTP/2
+> Host: www.mgpu.ru
+> User-Agent: curl/8.5.0
+> Accept: */*
+>
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* old SSL session ID is stale, removing
+< HTTP/2 200
+< server: ddos-guard
+< content-security-policy: upgrade-insecure-requests;
+< set-cookie: __ddg1_=vPrUlMfIS1yyvXrmHIzh; Domain=.mgpu.ru; HttpOnly; Path=/; Expires=Wed,                          03-Sep-2025 16:54:17 GMT
+< date: Tue, 03 Sep 2024 16:54:18 GMT
+< content-type: text/html; charset=UTF-8
+< vary: Accept-Encoding
+< vary: Cookie
+< link: <https://www.mgpu.ru/wp-json/>; rel="https://api.w.org/"
+< link: <https://www.mgpu.ru/wp-json/wp/v2/pages/2>; rel="alternate"; type="application/json                         "
+< link: <https://www.mgpu.ru/>; rel=shortlink
+<
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+
   ```
 
 </details>
