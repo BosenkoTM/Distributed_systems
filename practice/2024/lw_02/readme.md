@@ -31,32 +31,30 @@ request data
 Поскольку про функциональность и особенности протокола вам рассказали на лекции, давайте попробуем сами поделать запросы разными средствами. Самый чистый способ сделать HTTP запрос это отправить байты в сокет, это мы сделаем с помощью `telnet`.
 
 ```http
-$ telnet hse.ru 80
+$ sudo telnet mgpu.ru 80
 GET / HTTP/1.1
-Host: hse.ru
+Host:mgpu.ru
 ```
 
 В ответе придёт что-то подобное:
 ```http
 HTTP/1.1 301 Moved Permanently
 Server: ddos-guard
+Date: Tue, 03 Sep 2024 16:31:31 GMT
 Connection: keep-alive
 Keep-Alive: timeout=60
-Set-Cookie: __ddg1=DSIuHDlcII8dkgOTSt0Q; Domain=.hse.ru; HttpOnly; Path=/; Expires=Mon, 23-Aug-2021 09:41:37 GMT
-Date: Sun, 23 Aug 2020 09:41:37 GMT
-Content-Type: text/html
-Content-Length: 162
-Location: https://www.hse.ru/
-Strict-Transport-Security: max-age=15552000
-X-XSS-Protection: 1; mode=block; report=https://www.hse.ru/n/api/xss/report
+Location: https://mgpu.ru/
+Content-Type: text/html; charset=utf-8
+Content-Length: 568
 
-<html>
-<head><title>301 Moved Permanently</title></head>
-<body>
-<center><h1>301 Moved Permanently</h1></center>
-<hr><center>nginx</center>
-</body>
-</html>
+
+<!DOCTYPE html
+><html lang=en><meta charset=utf-8>
+<meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width">
+<title>Error 301</title><style>*{margin:0;padding:0}html{font:15px/22px arial,sans-serif;background: #fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}p{margin:11px 0 22px;overflow :hidden}ins{color:#777;text-decoration :none;}
+</style><p>
+<b>301 - Moved Permanently .</b> <ins>That’s an error.</ins>
+<p>Requested content has been permanently moved.  <ins>That’s all we know.</ins>
 ```
 
 В ответе нам пришел 301 код и заголовок Location. Сервер попросил нас не ходить по незащищенному HTTP на домен hse.ru, а вместо этого пойти по адресу `https://www.hse.ru/`, иными словами открыть TCP соединение, внутри него открыть TLS соединение и после этого сделать запрос вида
