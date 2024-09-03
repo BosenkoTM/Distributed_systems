@@ -158,7 +158,7 @@ Trying 91.215.42.162:80...
 Видим, что нас опять просят проследовать по новому URL `HTTP/2 301` `location: https://www.mgpu.ru/`.
 
 <details>
-  <summary><code>$ curl -v https://www.mgpu.ru/ > /dev/null</code></summary>
+  <summary><code>$ curl -v https://www.mgpu.ru/ </code></summary>
 
   ```
  * Host www.mgpu.ru:443 was resolved.
