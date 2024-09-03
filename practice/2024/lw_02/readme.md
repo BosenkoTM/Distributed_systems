@@ -231,7 +231,7 @@ Trying 91.215.42.162:80...
 
 _гифка кикабельна_
 
-[![Screencast](./media/hse-ru-network.gif)](https://disk.yandex.ru/i/UmHYzSpULFQ78A)
+[![Screencast](./media/http_browse.gif)](https://disk.yandex.ru/i/UmHYzSpULFQ78A)
 
 Видимо, судя по отправленному IP в заголовке сервер понял, что мы из России и сразу показал нам русскую версию сайта, чего не произошло, когда мы использовали curl. Тем не менее после `http://hse.ru` нас отправили на `https://www.hse.ru/`, браузер отработал этот редирект и начал получать нормальную страницу и данные на ней.
 
