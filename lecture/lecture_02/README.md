@@ -11,25 +11,31 @@
 HTTP предполагает наличие запроса и ответа. 
 Запросы выглядят следующим образом:
 ```bash
-[$] telnet google.com 80
-GET /search HTTP/1.1
-Host: google.com
+sudo telnet mgpu.ru 80
+GET / HTTP/1.1
+Host: mgpu.ru
 ```
 
 Ответ на данный запрос может выглядеть следующим образом:
 ```html
 HTTP/1.1 301 Moved Permanently
-Location: http://www.google.com/
-Content-Type: text/html; charset=UTF-8
-Cache-Control: public, max-age=2592000
-Content-Length: 219
+Server: ddos-guard
+Date: Tue, 03 Sep 2024 16:31:31 GMT
+Connection: keep-alive
+Keep-Alive: timeout=60
+Location: https://mgpu.ru/
+Content-Type: text/html; charset=utf-8
+Content-Length: 568
 
-<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
-<TITLE>301 Moved</TITLE></HEAD><BODY>
-<H1>301 Moved</H1>
-The document has moved
-<A HREF="http://www.google.com/">here</A>.
-</BODY></HTML>
+<!DOCTYPE html>
+<html lang=en>
+<meta charset=utf-8>
+<meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width"><title>Error 301</title><style>*{margin:0;padding:0}html{font:15px/22px arial,sans-serif;background: #fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}p{margin:11px 0 22px;overflow :hidden}ins{color:#777;text-decoration :none;}
+</style><p><b>301 - Moved Permanently .</b>
+<ins>That’s an error.</ins>
+<p>Requested content has been permanently moved.
+<ins>That’s all we know.</ins>
+
 ```
 
 Запрос имеет следующую структуру:
