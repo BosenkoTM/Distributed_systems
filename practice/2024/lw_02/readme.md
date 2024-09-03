@@ -98,68 +98,59 @@ Trying 91.215.42.162:80...
 Видим, что нас опять просят проследовать по новому URL.
 
 <details>
-  <summary><code>$ curl -v https://www.hse.ru/</code></summary>
+  <summary><code>$ curl -v https://mgpu.ru/</code></summary>
 
   ```http
-  *   Trying 186.2.163.228...
-  * TCP_NODELAY set
-  * Connected to www.hse.ru (186.2.163.228) port 443 (#0)
-  * ALPN, offering h2
-  * ALPN, offering http/1.1
-  * successfully set certificate verify locations:
-  *   CAfile: /etc/ssl/cert.pem
-    CApath: none
-  * TLSv1.2 (OUT), TLS handshake, Client hello (1):
-  * TLSv1.2 (IN), TLS handshake, Server hello (2):
-  * TLSv1.2 (IN), TLS handshake, Certificate (11):
-  * TLSv1.2 (IN), TLS handshake, Server key exchange (12):
-  * TLSv1.2 (IN), TLS handshake, Server finished (14):
-  * TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
-  * TLSv1.2 (OUT), TLS change cipher, Change cipher spec (1):
-  * TLSv1.2 (OUT), TLS handshake, Finished (20):
-  * TLSv1.2 (IN), TLS change cipher, Change cipher spec (1):
-  * TLSv1.2 (IN), TLS handshake, Finished (20):
-  * SSL connection using TLSv1.2 / ECDHE-RSA-AES128-GCM-SHA256
-  * ALPN, server accepted to use h2
-  * Server certificate:
-  *  subject: CN=*.hse.ru
-  *  start date: Dec 26 00:00:00 2019 GMT
-  *  expire date: Jan 29 23:59:59 2022 GMT
-  *  subjectAltName: host "www.hse.ru" matched cert's "*.hse.ru"
-  *  issuer: C=GB; ST=Greater Manchester; L=Salford; O=Sectigo Limited; CN=Sectigo RSA Domain Validation Secure Server CA
-  *  SSL certificate verify ok.
-  * Using HTTP2, server supports multi-use
-  * Connection state changed (HTTP/2 confirmed)
-  * Copying HTTP/2 data in stream buffer to connection buffer after upgrade: len=0
-  * Using Stream ID: 1 (easy handle 0x7ff74400f600)
-  > GET / HTTP/2
-  > Host: www.hse.ru
-  > User-Agent: curl/7.64.1
-  > Accept: */*
-  >
-  * Connection state changed (MAX_CONCURRENT_STREAMS == 128)!
-  < HTTP/2 302
-  < server: ddos-guard
-  < set-cookie: __ddg1=IkR3Ln7mvuUxJdYVZi8u; Domain=.hse.ru; HttpOnly; Path=/; Expires=Mon, 23-Aug-2021 10:04:33 GMT
-  < date: Sun, 23 Aug 2020 10:04:33 GMT
-  < content-type: text/html
-  < content-length: 138
-  < location: https://www.hse.ru/en/
-  < expires: Sun, 23 Aug 2020 10:04:33 GMT
-  < cache-control: max-age=0
-  < strict-transport-security: max-age=15552000
-  < x-xss-protection: 1; mode=block; report=https://www.hse.ru/n/api/xss/report
-  < set-cookie: tracking=ZEsKBF9CPzGw/p/9CERiAg==; expires=Thu, 31-Dec-37 23:55:55 GMT; domain=.hse.ru; path=/
-  <
-  <html>
-  <head><title>302 Found</title></head>
-  <body>
-  <center><h1>302 Found</h1></center>
-  <hr><center>nginx</center>
-  </body>
-  </html>
-  * Connection #0 to host www.hse.ru left intact
-  * Closing connection 0
+  Trying 91.215.42.162:443...
+* Connected to mgpu.ru (91.215.42.162) port 443
+* ALPN: curl offers h2,http/1.1
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+*  CAfile: /etc/ssl/certs/ca-certificates.crt
+*  CApath: /etc/ssl/certs
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_128_GCM_SHA256 / X25519 / RSASSA-PSS
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=*.mgpu.ru
+*  start date: Mar 13 08:14:39 2024 GMT
+*  expire date: Apr 14 08:14:38 2025 GMT
+*  subjectAltName: host "mgpu.ru" matched cert's "mgpu.ru"
+*  issuer: C=BE; O=GlobalSign nv-sa; CN=GlobalSign GCC R6 AlphaSSL CA 2023
+*  SSL certificate verify ok.
+*   Certificate level 0: Public key type RSA (2048/112 Bits/secBits), signed using sha256WithRSAEncryption
+*   Certificate level 1: Public key type RSA (2048/112 Bits/secBits), signed using sha256WithRSAEncryption
+*   Certificate level 2: Public key type RSA (4096/152 Bits/secBits), signed using sha384WithRSAEncryption
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://mgpu.ru/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: mgpu.ru]
+* [HTTP/2] [1] [:path: /]
+* [HTTP/2] [1] [user-agent: curl/8.5.0]
+* [HTTP/2] [1] [accept: */*]
+> GET / HTTP/2
+> Host: mgpu.ru
+> User-Agent: curl/8.5.0
+> Accept: */*
+>
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* old SSL session ID is stale, removing
+< HTTP/2 301
+< server: ddos-guard
+< date: Tue, 03 Sep 2024 16:51:27 GMT
+< content-security-policy: upgrade-insecure-requests;
+< set-cookie: __ddg1_=xczNXNnfMCMYrJjcjBJv; Domain=.mgpu.ru; HttpOnly; Path=/; Expires=Wed, 03-Sep-2025 16:51:27 GMT
+< content-length: 0
+< location: https://www.mgpu.ru/
+<
+* Connection #0 to host mgpu.ru left intact
   ```
 
 </details>
