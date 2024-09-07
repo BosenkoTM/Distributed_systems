@@ -13,13 +13,7 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
  - OC **`Ubuntu 24.04`** на базе кластера **`МГПУ`**. Номер РМ студента получить у ведущего лектора.
    
 </details>
-    
-## Темы курсовых проектов
    
-   <details>
-
-## Текущая успеваемость
- [АДЭУ-221](https://docs.google.com/spreadsheets/d/1NOTUaM9YFTO9QEV7WKDY1KJoWyKj5iSkfVdgChCiw_o/edit?usp=sharing)
 
 ## Вопросы к экзамену(зачет)
 
