@@ -12,8 +12,6 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
    
  - OC **`Ubuntu 24.04`** на базе кластера **`МГПУ`**. Номер РМ студента получить у ведущего лектора.
    
- `ВИРТУАЛЬНАЯ ГОСТЕВАЯ ОС`:
- - `Ubuntu 24.04` [vm - VirtualBox](https://disk.yandex.ru/d/5DqoTFsuPXZN9Q).
 </details>
     
 ## Темы курсовых проектов
