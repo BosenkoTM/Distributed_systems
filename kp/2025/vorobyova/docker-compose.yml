@@ -1,0 +1,117 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: sql_dataset_generator
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+  # RabbitMQ Message Broker
+  rabbitmq:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - app-network
+
+  # User Service
+  user-service:
+    build: ./services/user-service
+    ports:
+      - "8001:8000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/sql_dataset_generator
+      - RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - app-network
+
+  # Task Service
+  task-service:
+    build: ./services/task-service
+    ports:
+      - "8002:8000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/sql_dataset_generator
+      - RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
+    volumes:
+      - ./uploads:/app/uploads
+      - ./results:/app/results
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - app-network
+
+  # Result Service
+  result-service:
+    build: ./services/result-service
+    ports:
+      - "8003:8000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/sql_dataset_generator
+      - RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
+    volumes:
+      - ./results:/app/results
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - app-network
+
+  # Frontend (React.js)
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8001
+      - REACT_APP_TASK_API_URL=http://localhost:8002
+      - REACT_APP_RESULT_API_URL=http://localhost:8003
+    depends_on:
+      - user-service
+      - task-service
+      - result-service
+    networks:
+      - app-network
+
+  # Admin Dashboard
+  admin-dashboard:
+    build: ./admin-dashboard
+    ports:
+      - "3001:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8001
+      - REACT_APP_TASK_API_URL=http://localhost:8002
+      - REACT_APP_RESULT_API_URL=http://localhost:8003
+    depends_on:
+      - user-service
+      - task-service
+      - result-service
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+  rabbitmq_data:
+
+networks:
+  app-network:
+    driver: bridge
