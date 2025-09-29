@@ -221,7 +221,7 @@ mkdir -p shared results data
 ./start.sh
 
 # Или ручной запуск
-docker-compose up -d --build
+sudo docker compose up -d --build
 
 # Запуск с автоматическим мониторингом
 python run_experiment.py
@@ -231,15 +231,15 @@ python run_experiment.py
 
 ```bash
 # Просмотр логов сервера
-docker-compose logs -f federated-server
+sudo docker compose logs -f federated-server
 
 # Просмотр логов клиентов
-docker-compose logs -f client-1
-docker-compose logs -f client-2
+sudo docker compose logs -f client-1
+sudo docker compose logs -f client-2
 # ... и так далее для всех клиентов
 
 # Просмотр статуса всех сервисов
-docker-compose ps
+sudo docker compose ps
 ```
 
 ### Шаг 5: Проверка результатов
@@ -261,7 +261,7 @@ cat results/training_results.json
 
 ```
 federated-learning-cifar10/
-├── docker-compose.yml          # Конфигурация Docker Compose
+├── sudo docker compose.yml          # Конфигурация Docker Compose
 ├── Dockerfile.server           # Dockerfile для сервера
 ├── Dockerfile.client           # Dockerfile для клиентов
 ├── requirements.txt            # Python зависимости
@@ -340,41 +340,41 @@ curl http://localhost:8000/get_model
 
 ```bash
 # Все логи
-docker-compose logs
+sudo docker compose logs
 
 # Конкретный сервис
-docker-compose logs federated-server
-docker-compose logs client-1
+sudo docker compose logs federated-server
+sudo docker compose logs client-1
 
 # Следить за логами в реальном времени
-docker-compose logs -f
+sudo docker compose logs -f
 ```
 
 ### Проверка состояния контейнеров
 
 ```bash
 # Статус всех контейнеров
-docker-compose ps
+sudo docker compose ps
 
 # Детальная информация
-docker-compose top
+sudo docker compose top
 ```
 
 ### Остановка системы
 
 ```bash
 # Остановка всех сервисов
-docker-compose down
+sudo docker compose down
 
 # Остановка с удалением volumes
-docker-compose down -v
+sudo docker compose down -v
 ```
 
 ## Возможные проблемы и решения
 
 ### 1. Проблемы с памятью
 ```bash
-# Увеличить лимиты памяти в docker-compose.yml
+# Увеличить лимиты памяти в sudo docker compose.yml
 deploy:
   resources:
     limits:
@@ -395,7 +395,7 @@ docker network inspect federated-learning-cifar10_federated-network
 ### 4. Очистка системы
 ```bash
 # Удаление всех контейнеров и образов
-docker-compose down --rmi all --volumes --remove-orphans
+sudo docker compose down --rmi all --volumes --remove-orphans
 
 # Очистка Docker системы
 docker system prune -a
@@ -405,7 +405,7 @@ docker system prune -a
 
 ### Добавление новых клиентов
 
-1. Добавить новый сервис в `docker-compose.yml`:
+1. Добавить новый сервис в `sudo docker compose.yml`:
 ```yaml
 client-6:
   build:
@@ -469,3 +469,4 @@ client-6:
 5. **Практическая применимость** - готовое решение для исследований и экспериментов
 
 Федеративная модель показывает сопоставимую точность с централизованной моделью, доказывая состоятельность подхода для распределенного машинного обучения с сохранением конфиденциальности данных.
+
