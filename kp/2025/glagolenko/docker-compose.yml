@@ -1,0 +1,116 @@
+version: '3.8'
+
+services:
+  federated-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: federated-server
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./shared:/app/shared
+      - ./results:/app/results
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - federated-network
+    command: python server.py
+
+  client-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: client-1
+    volumes:
+      - ./shared:/app/shared
+      - ./results:/app/results
+    environment:
+      - CLIENT_ID=1
+      - SERVER_URL=http://federated-server:8000
+      - PYTHONUNBUFFERED=1
+    networks:
+      - federated-network
+    depends_on:
+      - federated-server
+    command: python client.py
+
+  client-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: client-2
+    volumes:
+      - ./shared:/app/shared
+      - ./results:/app/results
+    environment:
+      - CLIENT_ID=2
+      - SERVER_URL=http://federated-server:8000
+      - PYTHONUNBUFFERED=1
+    networks:
+      - federated-network
+    depends_on:
+      - federated-server
+    command: python client.py
+
+  client-3:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: client-3
+    volumes:
+      - ./shared:/app/shared
+      - ./results:/app/results
+    environment:
+      - CLIENT_ID=3
+      - SERVER_URL=http://federated-server:8000
+      - PYTHONUNBUFFERED=1
+    networks:
+      - federated-network
+    depends_on:
+      - federated-server
+    command: python client.py
+
+  client-4:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: client-4
+    volumes:
+      - ./shared:/app/shared
+      - ./results:/app/results
+    environment:
+      - CLIENT_ID=4
+      - SERVER_URL=http://federated-server:8000
+      - PYTHONUNBUFFERED=1
+    networks:
+      - federated-network
+    depends_on:
+      - federated-server
+    command: python client.py
+
+  client-5:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: client-5
+    volumes:
+      - ./shared:/app/shared
+      - ./results:/app/results
+    environment:
+      - CLIENT_ID=5
+      - SERVER_URL=http://federated-server:8000
+      - PYTHONUNBUFFERED=1
+    networks:
+      - federated-network
+    depends_on:
+      - federated-server
+    command: python client.py
+
+networks:
+  federated-network:
+    driver: bridge
+
+volumes:
+  shared:
+  results:

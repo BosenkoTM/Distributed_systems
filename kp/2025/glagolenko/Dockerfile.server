@@ -1,0 +1,28 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Установка системных зависимостей
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+# Копирование requirements
+COPY requirements.txt .
+
+# Установка Python зависимостей
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копирование серверного кода
+COPY server.py .
+COPY federated_learning/ ./federated_learning/
+COPY models/ ./models/
+COPY utils/ ./utils/
+
+# Создание директорий для общих данных
+RUN mkdir -p /app/shared /app/results
+
+EXPOSE 8000
+
+CMD ["python", "server.py"]
