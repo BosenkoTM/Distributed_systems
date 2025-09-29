@@ -128,13 +128,13 @@ docker --version
 #### 3. Установка Docker Compose
 ```bash
 # Скачивание Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.0/docker compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker compose
 
 # Установка прав на выполнение
-sudo chmod +x /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker compose
 
 # Проверка установки
-docker-compose --version
+docker compose --version
 ```
 
 #### 4. Установка Git
@@ -168,22 +168,22 @@ nano .env
 #### 4. Запуск всех сервисов
 ```bash
 # Запуск в фоновом режиме
-docker-compose up -d
+docker compose up -d
 
 # Или запуск с выводом логов
-docker-compose up
+docker compose up
 ```
 
 #### 5. Проверка статуса сервисов
 ```bash
 # Проверка статуса контейнеров
-docker-compose ps
+docker compose ps
 
 # Просмотр логов
-docker-compose logs -f
+docker compose logs -f
 
 # Проверка конкретного сервиса
-docker-compose logs -f user-service
+docker compose logs -f user-service
 ```
 
 #### 6. Проверка работоспособности
@@ -226,8 +226,8 @@ After=docker.service
 Type=oneshot
 RemainAfterExit=yes
 WorkingDirectory=/path/to/sql-dataset-generator
-ExecStart=/usr/local/bin/docker-compose up -d
-ExecStop=/usr/local/bin/docker-compose down
+ExecStart=/usr/local/bin/docker compose up -d
+ExecStop=/usr/local/bin/docker compose down
 TimeoutStartSec=0
 
 [Install]
@@ -257,7 +257,7 @@ sudo systemctl start sql-dataset-generator.service
 #### 1. Создание администратора
 ```bash
 # Вход в контейнер user-service
-docker-compose exec user-service python -c "
+docker compose exec user-service python -c "
 from database import SessionLocal
 from models import User
 from auth import get_password_hash
@@ -367,7 +367,7 @@ curl -X POST http://localhost:8002/upload \
 
 ### Переменные окружения
 
-Основные переменные окружения (устанавливаются в docker-compose.yml):
+Основные переменные окружения (устанавливаются в docker compose.yml):
 
 - `DATABASE_URL` - строка подключения к PostgreSQL
 - `RABBITMQ_URL` - строка подключения к RabbitMQ
@@ -379,7 +379,7 @@ curl -X POST http://localhost:8002/upload \
 
 1. **Увеличить количество экземпляров сервисов**
 ```yaml
-# В docker-compose.yml
+# В docker compose.yml
 task-service:
   deploy:
     replicas: 3
@@ -415,7 +415,7 @@ sudo systemctl stop nginx    # если установлен
 #### 2. Проблемы с Docker
 ```bash
 # Пересобрать образы
-docker-compose build --no-cache
+docker compose build --no-cache
 
 # Очистить неиспользуемые ресурсы
 docker system prune -a
@@ -427,14 +427,14 @@ sudo systemctl restart docker
 #### 3. Проблемы с базой данных
 ```bash
 # Проверить логи PostgreSQL
-docker-compose logs postgres
+docker compose logs postgres
 
 # Пересоздать базу данных
-docker-compose down -v
-docker-compose up -d
+docker compose down -v
+docker compose up -d
 
 # Проверить подключение к БД
-docker-compose exec postgres psql -U postgres -d sql_dataset_generator -c "\dt"
+docker compose exec postgres psql -U postgres -d sql_dataset_generator -c "\dt"
 ```
 
 #### 4. Проблемы с правами доступа
@@ -477,25 +477,25 @@ docker system prune -a --volumes
 
 ```bash
 # Все сервисы
-docker-compose logs -f
+docker compose logs -f
 
 # Конкретный сервис
-docker-compose logs -f task-service
-docker-compose logs -f user-service
-docker-compose logs -f result-service
+docker compose logs -f task-service
+docker compose logs -f user-service
+docker compose logs -f result-service
 
 # Логи с временными метками
-docker-compose logs -f -t
+docker compose logs -f -t
 
 # Последние 100 строк логов
-docker-compose logs --tail=100 -f
+docker compose logs --tail=100 -f
 ```
 
 ### Метрики производительности
 
 - **Админский дашборд**: http://localhost:3001
 - **RabbitMQ Management**: http://localhost:15672
-- **Логи приложения**: доступны через `docker-compose logs`
+- **Логи приложения**: доступны через `docker compose logs`
 
 ### Мониторинг системы
 
@@ -507,7 +507,7 @@ docker stats
 docker system df
 
 # Проверка здоровья контейнеров
-docker-compose ps
+docker compose ps
 ```
 
 ### Настройка логирования
@@ -516,7 +516,7 @@ docker-compose ps
 # Создание директории для логов
 mkdir -p logs
 
-# Настройка ротации логов в docker-compose.yml
+# Настройка ротации логов в docker compose.yml
 logging:
   driver: "json-file"
   options:
@@ -530,7 +530,7 @@ logging:
 
 #### 1. Изменить пароли по умолчанию
 ```yaml
-# В docker-compose.yml
+# В docker compose.yml
 postgres:
   environment:
     POSTGRES_PASSWORD: your-secure-password
@@ -586,7 +586,7 @@ sudo certbot --nginx -d yourdomain.com
 
 ```
 sql-dataset-generator/
-├── docker-compose.yml          # Конфигурация Docker Compose
+├── docker compose.yml          # Конфигурация Docker Compose
 ├── services/                   # Микросервисы
 │   ├── user-service/          # Сервис пользователей
 │   ├── task-service/          # Сервис задач
@@ -605,7 +605,7 @@ sql-dataset-generator/
 # Создать директорию сервиса
 mkdir services/new-service
 # Добавить Dockerfile, requirements.txt, main.py
-# Обновить docker-compose.yml
+# Обновить docker compose.yml
 ```
 
 2. **Новые API endpoints**
@@ -622,17 +622,17 @@ async def new_endpoint():
 
 1. **Проверьте логи сервисов**
 ```bash
-docker-compose logs -f
+docker compose logs -f
 ```
 
 2. **Убедитесь, что все сервисы запущены**
 ```bash
-docker-compose ps
+docker compose ps
 ```
 
-3. **Проверьте конфигурацию docker-compose.yml**
+3. **Проверьте конфигурацию docker compose.yml**
 ```bash
-docker-compose config
+docker compose config
 ```
 
 4. **Обратитесь к документации API**
@@ -644,7 +644,7 @@ docker-compose config
 
 ```bash
 # Проверка состояния всех контейнеров
-docker-compose ps
+docker compose ps
 
 # Проверка использования ресурсов
 docker stats
@@ -675,3 +675,4 @@ docker volume ls
 **Дата**: 2024  
 **Разработчик**: ИЦО МГПУ  
 **ОС**: Ubuntu 20.04 LTS
+
