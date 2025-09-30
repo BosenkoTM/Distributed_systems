@@ -178,20 +178,20 @@ nano .env
 
 ```bash
 # Запуск всех сервисов
-docker-compose up -d
+sudo docker compose up -d
 
 # Проверка статуса сервисов
-docker-compose ps
+sudo docker compose ps
 ```
 
 #### 4. Инициализация базы данных
 
 ```bash
 # Выполнение миграций (если необходимо)
-docker-compose exec backend alembic upgrade head
+sudo docker compose exec backend alembic upgrade head
 
 # Создание административного пользователя
-docker-compose exec backend python -c "
+sudo docker compose exec backend python -c "
 from app.core.database import SessionLocal
 from app.models.user import User
 from app.services.auth_service import AuthService
@@ -249,10 +249,10 @@ npm start
 
 ```bash
 # Запуск только PostgreSQL
-docker-compose up -d postgres redis
+sudo docker compose up -d postgres redis
 
 # Подключение к базе данных
-docker-compose exec postgres psql -U admin -d privacy_proxy
+sudo docker compose exec postgres psql -U admin -d privacy_proxy
 ```
 
 ## 📖 Использование
@@ -372,13 +372,13 @@ GET /api/v1/monitoring/privacy-metrics
 
 ```bash
 # Все тесты
-docker-compose exec backend pytest
+sudo docker compose exec backend pytest
 
 # Тесты с покрытием
-docker-compose exec backend pytest --cov=app --cov-report=html
+sudo docker compose exec backend pytest --cov=app --cov-report=html
 
 # Конкретный тест
-docker-compose exec backend pytest tests/test_privacy_algorithms.py::TestKAnonymity::test_k_anonymity_application
+sudo docker compose exec backend pytest tests/test_privacy_algorithms.py::TestKAnonymity::test_k_anonymity_application
 ```
 
 ### Типы тестов
@@ -392,7 +392,7 @@ docker-compose exec backend pytest tests/test_privacy_algorithms.py::TestKAnonym
 
 ```bash
 # Генерация отчета о покрытии
-docker-compose exec backend pytest --cov=app --cov-report=html
+sudo docker compose exec backend pytest --cov=app --cov-report=html
 
 # Просмотр отчета
 open htmlcov/index.html
@@ -480,3 +480,4 @@ open htmlcov/index.html
 **Автор**: [Ваше имя]  
 **Дата**: Декабрь 2024  
 **Версия**: 1.0.0
+
