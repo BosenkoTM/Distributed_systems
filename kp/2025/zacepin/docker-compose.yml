@@ -1,0 +1,161 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Master
+  postgres-master:
+    image: postgres:15
+    container_name: postgres-master
+    environment:
+      POSTGRES_DB: labeling_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_REPLICATION_USER: replicator
+      POSTGRES_REPLICATION_PASSWORD: replicator
+    volumes:
+      - postgres_master_data:/var/lib/postgresql/data
+      - ./database/master-init.sql:/docker-entrypoint-initdb.d/master-init.sql
+    ports:
+      - "5432:5432"
+    command: >
+      postgres
+      -c wal_level=replica
+      -c max_wal_senders=3
+      -c max_replication_slots=3
+      -c hot_standby=on
+      -c archive_mode=on
+      -c archive_command='test ! -f /tmp/%f && cp %p /tmp/%f'
+    networks:
+      - labeling_network
+
+  # PostgreSQL Replica 1
+  postgres-replica-1:
+    image: postgres:15
+    container_name: postgres-replica-1
+    environment:
+      POSTGRES_DB: labeling_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGUSER: postgres
+    volumes:
+      - postgres_replica1_data:/var/lib/postgresql/data
+      - ./database/replica-init.sql:/docker-entrypoint-initdb.d/replica-init.sql
+    ports:
+      - "5433:5432"
+    depends_on:
+      - postgres-master
+    command: >
+      bash -c "
+      until pg_basebackup -h postgres-master -D /var/lib/postgresql/data -U replicator -v -P -W; do
+        echo 'Waiting for master to be ready...'
+        sleep 1s
+      done
+      echo 'standby_mode = on' >> /var/lib/postgresql/data/recovery.conf
+      echo 'primary_conninfo = host=postgres-master port=5432 user=replicator' >> /var/lib/postgresql/data/recovery.conf
+      postgres
+      "
+    networks:
+      - labeling_network
+
+  # PostgreSQL Replica 2
+  postgres-replica-2:
+    image: postgres:15
+    container_name: postgres-replica-2
+    environment:
+      POSTGRES_DB: labeling_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGUSER: postgres
+    volumes:
+      - postgres_replica2_data:/var/lib/postgresql/data
+      - ./database/replica-init.sql:/docker-entrypoint-initdb.d/replica-init.sql
+    ports:
+      - "5434:5432"
+    depends_on:
+      - postgres-master
+    command: >
+      bash -c "
+      until pg_basebackup -h postgres-master -D /var/lib/postgresql/data -U replicator -v -P -W; do
+        echo 'Waiting for master to be ready...'
+        sleep 1s
+      done
+      echo 'standby_mode = on' >> /var/lib/postgresql/data/recovery.conf
+      echo 'primary_conninfo = host=postgres-master port=5432 user=replicator' >> /var/lib/postgresql/data/recovery.conf
+      postgres
+      "
+    networks:
+      - labeling_network
+
+  # Redis для кэширования и сессий
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - labeling_network
+
+  # FastAPI Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres-master:5432/labeling_db
+      - REDIS_URL=redis://redis:6379
+      - MASTER_DB_URL=postgresql://postgres:postgres@postgres-master:5432/labeling_db
+      - REPLICA1_DB_URL=postgresql://postgres:postgres@postgres-replica-1:5432/labeling_db
+      - REPLICA2_DB_URL=postgresql://postgres:postgres@postgres-replica-2:5432/labeling_db
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres-master
+      - postgres-replica-1
+      - postgres-replica-2
+      - redis
+    volumes:
+      - ./backend:/app
+    networks:
+      - labeling_network
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - labeling_network
+
+  # Nginx Load Balancer
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - labeling_network
+
+volumes:
+  postgres_master_data:
+  postgres_replica1_data:
+  postgres_replica2_data:
+  redis_data:
+
+networks:
+  labeling_network:
+    driver: bridge
