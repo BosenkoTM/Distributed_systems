@@ -465,3 +465,28 @@ cd rabbitmq_async && source ../.venv/bin/activate && python web_app.py
 
 ---
 
+## Источники и документация
+
+### gRPC
+- [gRPC Python Quick Start](https://grpc.io/docs/languages/python/quickstart/)
+- [Protocol Buffers Language Guide](https://developers.google.com/protocol-buffers/docs/proto3)
+- [gRPC Python Examples](https://github.com/grpc/grpc/tree/master/examples/python)
+
+### RabbitMQ
+- [RabbitMQ Python Tutorial](https://www.rabbitmq.com/tutorials/tutorial-one-python.html)
+- [Pika Python Client Documentation](https://pika.readthedocs.io/)
+- [RabbitMQ Management Plugin](https://www.rabbitmq.com/management.html)
+
+### Docker
+- [Docker Compose Documentation](https://docs.docker.com/compose/)
+- [RabbitMQ Docker Hub](https://hub.docker.com/_/rabbitmq)
+
+### Python
+- [Python Virtual Environments](https://docs.python.org/3/tutorial/venv.html)
+- [Flask Documentation](https://flask.palletsprojects.com/)
+- [SQLite Python Documentation](https://docs.python.org/3/library/sqlite3.html)
+
+### Архитектура микросервисов
+- [Microservices Patterns](https://microservices.io/)
+- [Message Queue Patterns](https://www.enterpriseintegrationpatterns.com/patterns/messaging/)
+- [gRPC vs REST API](https://grpc.io/docs/what-is-grpc/introduction/)
