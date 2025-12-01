@@ -4,1062 +4,598 @@
 
 ---
 
-## Практическое задание №1. Реализация RPC-сервиса с использованием gRPC
+## Общие указания
+
+**Время выполнения:** 40 минут на одно задание
+
+**Формат экзамена:**
+- Каждому студенту выдается одно практическое задание (номер определяется случайным образом)
+- Разрешается использовать документацию, справочные материалы, примеры из лабораторных работ
+- Код должен быть работающим и содержать комментарии
+- Необходимо ответить на все вопросы в задании
+
+**Критерии оценки:**
+- **Отлично (90-100%):** Полностью работающая реализация, корректные ответы на все вопросы, чистый код с комментариями
+- **Хорошо (75-89%):** Работающая реализация с небольшими недочетами, правильные ответы на большинство вопросов
+- **Удовлетворительно (60-74%):** Частично работающая реализация или корректная логика с ошибками в деталях
+- **Неудовлетворительно (<60%):** Нерабочий код или отсутствие понимания основных концепций
+
+**Технические требования:**
+- Python 3.8+
+- Все необходимые библиотеки должны быть установлены заранее (grpcio, Flask, pika)
+- Код должен запускаться локально на Ubuntu 20.04+ или аналогичной системе
+
+---
+
+## Практическое задание №1. Реализация gRPC-сервиса
 
 ### Постановка задачи
 
-Компания "ТехноБанк" разрабатывает распределенную систему управления счетами клиентов. Вам поручено спроектировать и реализовать gRPC-сервис для операций со счетами, который будет взаимодействовать с микросервисами аналитики, нотификаций и аудита.
+Разработайте gRPC-сервис "ProductCatalog" для получения информации о товарах. Сервис должен поддерживать два метода:
+- **GetProduct** (Unary RPC) - получение одного товара по ID
+- **StreamProducts** (Server Streaming RPC) - получение потока товаров по категории
 
-### Бизнес-требования
+### Что требуется реализовать
 
-Сервис должен поддерживать следующие операции:
-1. **Получение баланса счета** (Unary RPC)
-2. **Потоковая выгрузка истории транзакций** за период (Server Streaming RPC)
-3. **Пакетное зачисление средств** от нескольких источников (Client Streaming RPC)
-4. **Мониторинг транзакций в реальном времени** между клиентом и сервером (Bidirectional Streaming RPC)
+**1. Proto-контракт (30 баллов)**
 
-### Задание
+Создайте файл `product_service.proto`:
 
-#### Часть 1. Проектирование proto-контракта (30 баллов)
+```protobuf
+syntax = "proto3";
+package catalog;
 
-Разработайте файл `banking_service.proto`, который должен включать:
+service ProductCatalog {
+    // TODO: Определить два метода
+}
 
-1. **Определение сервиса** `BankingService` с четырьмя методами (по одному каждого типа RPC)
+message ProductRequest {
+    // TODO: ID товара
+}
 
-2. **Сообщения запросов:**
-   - `GetBalanceRequest` - содержит account_id (string)
-   - `TransactionHistoryRequest` - содержит account_id, start_date, end_date
-   - `DepositRequest` - содержит account_id, amount (double), source (string)
-   - `MonitorRequest` - содержит account_id, filter_type (enum: ALL, INCOMING, OUTGOING)
+message CategoryRequest {
+    // TODO: название категории
+}
 
-3. **Сообщения ответов:**
-   - `BalanceResponse` - account_id, balance, currency, last_update (timestamp)
-   - `Transaction` - transaction_id, amount, type, timestamp, description
-   - `DepositSummary` - total_deposited, transaction_count, status
-   - `MonitorEvent` - event_type (enum: DEPOSIT, WITHDRAWAL, TRANSFER), transaction
+message Product {
+    // TODO: id, name, price, category
+}
+```
 
-4. **Enum типы:**
-   - `TransactionType`: DEPOSIT, WITHDRAWAL, TRANSFER
-   - `FilterType`: ALL, INCOMING, OUTGOING
-   - `Status`: SUCCESS, PENDING, FAILED
+**2. Реализация сервера (40 баллов)**
 
-**Требуется:**
-- Написать полный proto-файл с комментариями
-- Обосновать выбор типов полей
-- Объяснить, почему каждая операция реализована определенным типом RPC
-
-#### Часть 2. Реализация серверной части (40 баллов)
-
-Реализуйте класс `BankingServiceServicer` на Python:
+Реализуйте `server.py` с базой данных в памяти:
 
 ```python
 import grpc
 from concurrent import futures
-import banking_service_pb2
-import banking_service_pb2_grpc
+import product_service_pb2
+import product_service_pb2_grpc
 import time
-from datetime import datetime
 
-class BankingServiceServicer(banking_service_pb2_grpc.BankingServiceServicer):
+class ProductCatalogServicer(product_service_pb2_grpc.ProductCatalogServicer):
     def __init__(self):
-        # Имитация базы данных
-        self.accounts = {
-            "ACC001": {"balance": 15000.00, "currency": "RUB"},
-            "ACC002": {"balance": 5000.00, "currency": "RUB"}
-        }
-        self.transactions = []  # История транзакций
+        self.products = [
+            {"id": "1", "name": "Laptop", "price": 75000, "category": "Electronics"},
+            {"id": "2", "name": "Phone", "price": 45000, "category": "Electronics"},
+            {"id": "3", "name": "Book", "price": 500, "category": "Books"}
+        ]
     
-    # TODO: Реализовать методы
-    def GetBalance(self, request, context):
+    def GetProduct(self, request, context):
+        # TODO: Найти товар по ID, вернуть Product или ошибку NOT_FOUND
         pass
     
-    def StreamTransactionHistory(self, request, context):
+    def StreamProducts(self, request, context):
+        # TODO: Отправить поток товаров по категории
+        # Добавить задержку 0.5 сек между сообщениями
         pass
-    
-    def BatchDeposit(self, request_iterator, context):
-        pass
-    
-    def MonitorTransactions(self, request_iterator, context):
-        pass
+
+def serve():
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    product_service_pb2_grpc.add_ProductCatalogServicer_to_server(
+        ProductCatalogServicer(), server
+    )
+    server.add_insecure_port('[::]:50051')
+    print("Сервер запущен на порту 50051")
+    server.start()
+    server.wait_for_termination()
+
+if __name__ == '__main__':
+    serve()
 ```
 
-**Требуется реализовать:**
+**3. Реализация клиента (30 баллов)**
 
-1. **GetBalance** (Unary):
-   - Проверка существования счета
-   - Возврат баланса с текущей датой-временем
-   - Обработка ошибки "счет не найден" (gRPC status code NOT_FOUND)
+Создайте `client.py`:
 
-2. **StreamTransactionHistory** (Server Streaming):
-   - Генерация потока из 10 транзакций для счета
-   - Задержка между сообщениями 0.5 сек (имитация загрузки из БД)
-   - Фильтрация по датам start_date и end_date
+```python
+import grpc
+import product_service_pb2
+import product_service_pb2_grpc
 
-3. **BatchDeposit** (Client Streaming):
-   - Прием потока запросов на зачисление
-   - Накопление total_deposited и transaction_count
-   - Возврат итоговой сводки после завершения потока
+def run():
+    with grpc.insecure_channel('localhost:50051') as channel:
+        stub = product_service_pb2_grpc.ProductCatalogStub(channel)
+        
+        # TODO: Вызвать GetProduct для ID="1"
+        
+        # TODO: Вызвать StreamProducts для category="Electronics"
+        # Вывести каждый товар из потока
 
-4. **MonitorTransactions** (Bidirectional Streaming):
-   - Прием фильтров от клиента
-   - Отправка событий транзакций согласно фильтру
-   - Обновление фильтра по запросу клиента
+if __name__ == '__main__':
+    run()
+```
 
-#### Часть 3. Реализация клиентской части (20 баллов)
+### Что нужно найти и проанализировать
 
-Реализуйте клиент, который:
+1. **Время выполнения:**
+   - Замерьте время выполнения GetProduct
+   - Замерьте общее время получения потока из 2 товаров (StreamProducts)
+   - Объясните разницу
 
-1. Вызывает GetBalance для счета "ACC001"
-2. Подписывается на StreamTransactionHistory для счета "ACC001"
-3. Отправляет 5 запросов BatchDeposit
-4. Устанавливает bidirectional stream для мониторинга с динамической сменой фильтра
-
-#### Часть 4. Анализ и оптимизация (10 баллов)
-
-**Требуется найти и проанализировать:**
-
-1. **Время отклика (latency):**
-   - Замерьте среднее время для каждого типа RPC-вызова
-   - Объясните разницу между unary и streaming вызовами
-
-2. **Пропускная способность:**
-   - Рассчитайте количество транзакций в секунду для Server Streaming
-   - Оцените влияние задержки (0.5 сек) на производительность
-
-3. **Использование ресурсов:**
-   - Какой объем данных передается для Bidirectional Streaming за 1 минуту?
-   - Предложите оптимизацию для снижения нагрузки
-
-4. **Обработка ошибок:**
-   - Продемонстрируйте обработку следующих сценариев:
-     - Клиент запрашивает несуществующий счет
-     - Обрыв соединения во время streaming
-     - Таймаут при долгом выполнении запроса
+2. **Обработка ошибок:**
+   - Что произойдет при запросе несуществующего ID?
+   - Как клиент должен обработать ошибку NOT_FOUND?
 
 ### Формат сдачи
 
-**Файлы для предоставления:**
-1. `banking_service.proto` - proto-контракт с комментариями
+1. `product_service.proto` - proto-контракт
 2. `server.py` - реализация сервера
 3. `client.py` - реализация клиента
-4. `analysis.md` - отчет с результатами анализа, графиками latency и обоснованиями
+4. Краткие ответы на вопросы (в комментариях к коду или отдельным файлом)
 
 **Критерии оценки:**
-- Корректность proto-контракта (30%)
-- Реализация всех четырех типов RPC (40%)
-- Функциональность клиента (20%)
-- Качество анализа и оптимизации (10%)
+- Корректность proto-файла (30%)
+- Работающий сервер с обработкой ошибок (40%)
+- Работающий клиент (30%)
 
 ---
 
-## Практическое задание №2. Проектирование RESTful API с Nginx в качестве обратного прокси
+## Практическое задание №2. Проектирование RESTful API
 
 ### Постановка задачи
 
-Онлайн-ритейлер "МаркетПлейс" разрабатывает систему управления каталогом товаров. Вам необходимо спроектировать и реализовать RESTful API на Flask, настроить Nginx в качестве обратного прокси-сервера и обеспечить высокую доступность системы.
+Разработайте REST API на Flask для управления задачами (Task Manager). API должно поддерживать базовые CRUD операции.
 
-### Бизнес-требования
+### Что требуется реализовать
 
-API должно поддерживать:
-1. **CRUD операции** для товаров (Product)
-2. **Фильтрацию** товаров по категориям и ценовому диапазону
-3. **Пагинацию** для списка товаров
-4. **Полнотекстовый поиск** по названию и описанию
-5. **Кэширование** часто запрашиваемых данных
-
-### Задание
-
-#### Часть 1. Проектирование RESTful API (25 баллов)
-
-Разработайте спецификацию API:
-
-**Ресурс: Products**
-
-| HTTP метод | Endpoint | Описание | Request Body | Response |
-|------------|----------|----------|--------------|----------|
-| GET | /api/products | Список товаров с пагинацией | - | 200 OK + JSON array |
-| GET | /api/products/:id | Получить товар по ID | - | 200 OK / 404 Not Found |
-| POST | /api/products | Создать новый товар | JSON | 201 Created |
-| PUT | /api/products/:id | Обновить товар | JSON | 200 OK / 404 Not Found |
-| DELETE | /api/products/:id | Удалить товар | - | 204 No Content |
-| GET | /api/products/search?q=...&category=...&min_price=...&max_price=...&page=...&limit=... | Поиск с фильтрами | - | 200 OK |
-
-**Модель Product:**
+**Модель Task:**
 ```json
 {
-  "id": "string (UUID)",
-  "name": "string",
-  "description": "string",
-  "price": "number",
-  "category": "string",
-  "stock": "integer",
-  "created_at": "ISO 8601 timestamp",
-  "updated_at": "ISO 8601 timestamp"
+  "id": 1,
+  "title": "Изучить gRPC",
+  "status": "pending",
+  "created_at": "2025-12-01T10:00:00"
 }
 ```
 
-**Требуется:**
-- Описать все endpoints с примерами запросов/ответов
-- Определить HTTP коды состояния для каждого сценария (успех, ошибки)
-- Спроектировать валидацию входных данных
-- Описать формат сообщений об ошибках
-
-#### Часть 2. Реализация Flask API (35 баллов)
-
-Реализуйте `app.py`:
+**Endpoints для реализации (40 баллов):**
 
 ```python
 from flask import Flask, jsonify, request
-from uuid import uuid4
 from datetime import datetime
 
 app = Flask(__name__)
 
-# Имитация БД в памяти
-products = []
+# База данных в памяти
+tasks = [
+    {"id": 1, "title": "Изучить gRPC", "status": "pending", 
+     "created_at": "2025-12-01T10:00:00"},
+    {"id": 2, "title": "Настроить Nginx", "status": "done", 
+     "created_at": "2025-12-01T09:00:00"}
+]
+next_id = 3
 
-@app.route('/api/products', methods=['GET'])
-def get_products():
+@app.route('/api/tasks', methods=['GET'])
+def get_tasks():
+    """TODO: Вернуть список всех задач"""
+    pass
+
+@app.route('/api/tasks/<int:task_id>', methods=['GET'])
+def get_task(task_id):
+    """TODO: Вернуть задачу по ID или 404"""
+    pass
+
+@app.route('/api/tasks', methods=['POST'])
+def create_task():
     """
-    TODO: Реализовать пагинацию
-    Параметры: page (default=1), limit (default=10)
+    TODO: Создать задачу
+    Обязательное поле: title
+    Валидация: title не пустой
+    Вернуть 201 и созданную задачу
     """
     pass
 
-@app.route('/api/products/<product_id>', methods=['GET'])
-def get_product(product_id):
-    """TODO: Получить товар по ID"""
+@app.route('/api/tasks/<int:task_id>', methods=['PUT'])
+def update_task(task_id):
+    """TODO: Обновить статус задачи (pending/done)"""
     pass
 
-@app.route('/api/products', methods=['POST'])
-def create_product():
-    """
-    TODO: Создать товар
-    Валидация: name, price, category обязательны
-    """
-    pass
-
-@app.route('/api/products/<product_id>', methods=['PUT'])
-def update_product(product_id):
-    """TODO: Обновить товар"""
-    pass
-
-@app.route('/api/products/<product_id>', methods=['DELETE'])
-def delete_product(product_id):
-    """TODO: Удалить товар"""
-    pass
-
-@app.route('/api/products/search', methods=['GET'])
-def search_products():
-    """
-    TODO: Поиск с фильтрами
-    Параметры: q, category, min_price, max_price, page, limit
-    """
+@app.route('/api/tasks/<int:task_id>', methods=['DELETE'])
+def delete_task(task_id):
+    """TODO: Удалить задачу, вернуть 204"""
     pass
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 ```
 
-**Требуется реализовать:**
+**Тестирование с curl (30 баллов):**
 
-1. **Валидация данных:**
-   - Проверка обязательных полей
-   - Проверка типов (price > 0, stock >= 0)
-   - Возврат 400 Bad Request с описанием ошибок
+Напишите команды curl для:
 
-2. **Пагинация:**
-   - Параметры query string: `page`, `limit`
-   - Метаинформация в ответе: `total`, `page`, `pages`, `items`
+1. Получения всех задач:
+```bash
+# TODO: написать команду
+```
 
-3. **Фильтрация и поиск:**
-   - Фильтрация по `category`, `min_price`, `max_price`
-   - Полнотекстовый поиск по `name` и `description` (параметр `q`)
+2. Создания новой задачи:
+```bash
+# TODO: написать команду POST с JSON
+```
 
-4. **Обработка ошибок:**
-   - 404 Not Found для несуществующих ресурсов
-   - 400 Bad Request для невалидных данных
-   - 500 Internal Server Error для неожиданных ошибок
+3. Обновления статуса задачи с ID=1:
+```bash
+# TODO: написать команду PUT
+```
 
-#### Часть 3. Настройка Nginx (25 баллов)
+**Базовая настройка Nginx (30 баллов):**
 
-Создайте конфигурацию Nginx (`/etc/nginx/sites-available/marketplace`):
-
-**Требования:**
-
-1. **Обратный прокси:**
-   - Проксирование всех запросов `/api/*` на Flask (localhost:5000)
-   - Передача заголовков: X-Real-IP, X-Forwarded-For, X-Forwarded-Proto
-
-2. **Кэширование:**
-   - Кэширование GET-запросов на `/api/products` на 5 минут
-   - Кэширование GET-запросов на `/api/products/:id` на 10 минут
-   - Отключение кэширования для POST, PUT, DELETE
-   - Добавление заголовка `X-Cache-Status: HIT/MISS`
-
-3. **Rate Limiting:**
-   - Ограничение: не более 100 запросов в минуту с одного IP
-   - Возврат 429 Too Many Requests при превышении лимита
-
-4. **Балансировка нагрузки:**
-   - Настроить upstream с двумя Flask-инстансами (порты 5000, 5001)
-   - Алгоритм: least_conn
-
-5. **Дополнительно:**
-   - Gzip сжатие для JSON-ответов
-   - Логирование времени обработки запросов
-   - Кастомные заголовки: `X-API-Version: 1.0`
-
-**Пример конфигурации (заполнить недостающее):**
+Создайте конфигурацию `/etc/nginx/sites-available/taskmanager`:
 
 ```nginx
-# Определение upstream
-upstream flask_app {
-    least_conn;
-    # TODO: добавить серверы
-}
-
-# Настройка кэша
-proxy_cache_path /var/cache/nginx/api levels=1:2 keys_zone=api_cache:10m max_size=100m inactive=60m;
-
-# Rate limiting
-limit_req_zone $binary_remote_addr zone=api_limit:10m rate=100r/m;
-
 server {
     listen 80;
-    server_name marketplace.local;
-
-    # Логирование
-    access_log /var/log/nginx/marketplace_access.log;
-    error_log /var/log/nginx/marketplace_error.log;
-
-    # Gzip compression
-    # TODO: настроить gzip
+    server_name localhost;
 
     location /api/ {
-        # Rate limiting
-        # TODO: применить rate limiting
-
-        # Проксирование
-        # TODO: настроить proxy_pass
-
-        # Кэширование
-        # TODO: настроить proxy_cache
-
-        # Заголовки
-        # TODO: добавить заголовки
+        # TODO: Настроить proxy_pass на Flask (localhost:5000)
+        
+        # TODO: Добавить заголовки:
+        # proxy_set_header Host $host;
+        # proxy_set_header X-Real-IP $remote_addr;
     }
 }
 ```
 
-#### Часть 4. Тестирование и анализ производительности (15 баллов)
+### Что нужно найти и проанализировать
 
-**Требуется найти и проанализировать:**
+1. **HTTP коды состояния:**
+   - Какой код вернется при успешном GET?
+   - Какой код при создании задачи (POST)?
+   - Какой код при запросе несуществующей задачи?
 
-1. **HTTP-анализ с curl:**
-   ```bash
-   # Создание товара
-   curl -X POST http://localhost/api/products \
-     -H "Content-Type: application/json" \
-     -d '{"name":"Laptop","description":"Gaming laptop","price":75000,"category":"Electronics","stock":10}'
-   
-   # Получение списка с пагинацией
-   curl "http://localhost/api/products?page=1&limit=5"
-   
-   # Поиск с фильтрами
-   curl "http://localhost/api/products/search?category=Electronics&min_price=50000&max_price=100000"
-   ```
-   
-   Проанализируйте:
-   - Заголовки ответа (X-Cache-Status, X-API-Version)
-   - Время отклика (используйте `curl -w "@curl-format.txt"`)
-   - Размер ответа до и после gzip
+2. **Идемпотентность методов:**
+   - Какие методы идемпотентны и почему?
+   - Что произойдет при повторном DELETE?
 
-2. **Тестирование кэширования:**
-   - Выполните GET-запрос дважды
-   - Сравните заголовок `X-Cache-Status: MISS` vs `HIT`
-   - Измерьте разницу во времени отклика
-
-3. **Тестирование Rate Limiting:**
-   - Используйте скрипт для отправки 150 запросов
-   - Подсчитайте количество ответов 429
-   - Проверьте заголовок `Retry-After`
-
-4. **Нагрузочное тестирование:**
-   - Используйте Apache Bench: `ab -n 1000 -c 10 http://localhost/api/products`
-   - Зафиксируйте:
-     - Requests per second
-     - Time per request (mean)
-     - Процент успешных запросов
-
-5. **Балансировка нагрузки:**
-   - Запустите 2 Flask-инстанса
-   - Проверьте логи Nginx: распределяются ли запросы между серверами
-   - Остановите один инстанс: продолжает ли работать API?
+3. **Через Nginx vs напрямую:**
+   - Какие преимущества дает использование Nginx?
 
 ### Формат сдачи
 
-**Файлы для предоставления:**
-1. `api_specification.md` - описание endpoints с примерами
-2. `app.py` - полная реализация Flask API
-3. `marketplace.conf` - конфигурация Nginx
-4. `testing_report.md` - отчет с результатами тестирования (curl команды, скриншоты, графики производительности)
+1. `app.py` - реализация Flask API
+2. `curl_commands.txt` - команды для тестирования
+3. `taskmanager.conf` - конфигурация Nginx
+4. Краткие ответы на вопросы
 
 **Критерии оценки:**
-- Корректность проектирования API (25%)
-- Полнота реализации Flask endpoints (35%)
-- Правильность настройки Nginx (25%)
-- Качество тестирования и анализа (15%)
+- Корректная реализация всех endpoints (40%)
+- Правильные curl команды (30%)
+- Базовая настройка Nginx (30%)
 
 ---
 
-## Практическое задание №3. Асинхронное взаимодействие через RabbitMQ и gRPC
+## Практическое задание №3. Асинхронное взаимодействие через RabbitMQ
 
 ### Постановка задачи
 
-Компания "ЛогистикПро" разрабатывает систему отслеживания доставки посылок. Система состоит из трех микросервисов:
-1. **Order Service** - прием заказов на доставку
-2. **Routing Service** - расчет маршрута (gRPC)
-3. **Notification Service** - отправка уведомлений клиентам
+Разработайте систему обработки заказов с асинхронным взаимодействием: Producer отправляет заказы в RabbitMQ, Consumer их обрабатывает.
 
-Вам необходимо реализовать асинхронное взаимодействие через брокер RabbitMQ и синхронные вызовы через gRPC.
+### Что требуется реализовать
 
-### Бизнес-требования
+**Структура сообщения (JSON):**
+```json
+{
+  "order_id": "ORD-001",
+  "customer": "Иван Иванов",
+  "amount": 5000,
+  "status": "pending"
+}
+```
 
-При создании заказа на доставку:
-1. Order Service публикует сообщение в RabbitMQ (очередь `orders`)
-2. Routing Service (Consumer) обрабатывает заказ:
-   - Вызывает gRPC-сервис для расчета маршрута
-   - Публикует результат в очередь `routes`
-3. Notification Service (Consumer) отправляет уведомление клиенту
-
-### Задание
-
-#### Часть 1. Проектирование архитектуры (20 баллов)
-
-**Требуется разработать:**
-
-1. **Диаграмму взаимодействия компонентов:**
-   - Покажите потоки данных между сервисами
-   - Укажите типы взаимодействия (асинхронное через RabbitMQ, синхронное через gRPC)
-   - Опишите структуру сообщений в очередях
-
-2. **Топологию RabbitMQ:**
-   - Exchange: `logistics_exchange` (тип: direct)
-   - Очереди: `orders`, `routes`, `notifications`
-   - Routing keys: `order.created`, `route.calculated`, `notification.send`
-
-3. **gRPC контракт (`routing_service.proto`):**
-   ```protobuf
-   syntax = "proto3";
-   
-   package routing;
-   
-   service RoutingService {
-       // Расчет маршрута
-       rpc CalculateRoute(RouteRequest) returns (RouteResponse) {}
-   }
-   
-   message RouteRequest {
-       string order_id = 1;
-       string origin = 2;        // Адрес отправления
-       string destination = 3;   // Адрес назначения
-       double weight = 4;        // Вес посылки (кг)
-   }
-   
-   message RouteResponse {
-       string order_id = 1;
-       string route_id = 2;
-       int32 distance = 3;       // Расстояние (км)
-       int32 estimated_time = 4; // Время доставки (часы)
-       double cost = 5;          // Стоимость доставки
-   }
-   ```
-
-4. **Структура сообщений в RabbitMQ (JSON):**
-   ```json
-   // Сообщение в очередь orders
-   {
-     "order_id": "ORD-12345",
-     "customer_id": "CUST-001",
-     "customer_email": "customer@example.com",
-     "origin": "Москва, ул. Ленина, 1",
-     "destination": "Санкт-Петербург, Невский пр., 10",
-     "weight": 5.5,
-     "created_at": "2025-12-01T10:00:00Z"
-   }
-   
-   // Сообщение в очередь routes
-   {
-     "order_id": "ORD-12345",
-     "route_id": "ROUTE-7890",
-     "distance": 700,
-     "estimated_time": 12,
-     "cost": 1500.00,
-     "calculated_at": "2025-12-01T10:00:05Z"
-   }
-   
-   // Сообщение в очередь notifications
-   {
-     "order_id": "ORD-12345",
-     "customer_email": "customer@example.com",
-     "subject": "Ваш заказ обработан",
-     "message": "Маршрут рассчитан. Ожидаемое время доставки: 12 часов. Стоимость: 1500 руб."
-   }
-   ```
-
-#### Часть 2. Реализация микросервисов (50 баллов)
-
-**A. Order Service (Producer)**
+**1. Producer (30 баллов)**
 
 ```python
 import pika
 import json
-from uuid import uuid4
-from datetime import datetime
 
-class OrderService:
+class OrderProducer:
     def __init__(self):
-        self.connection = pika.BlockingConnection(
-            pika.ConnectionParameters(
-                host='localhost',
-                credentials=pika.PlainCredentials('user', 'password')
-            )
-        )
-        self.channel = self.connection.channel()
-        
-        # TODO: Объявить exchange и очередь orders
-        
-    def create_order(self, customer_id, customer_email, origin, destination, weight):
+        # TODO: Подключиться к RabbitMQ (localhost, user/password)
+        # TODO: Объявить очередь 'orders' с durable=True
+        pass
+    
+    def send_order(self, order_id, customer, amount):
         """
-        TODO: Создать заказ и опубликовать в RabbitMQ
-        1. Сгенерировать order_id
-        2. Создать JSON сообщение
-        3. Опубликовать с routing_key='order.created'
-        4. Вернуть order_id
+        TODO: Создать JSON сообщение
+        TODO: Опубликовать в очередь 'orders'
+        TODO: Сделать сообщение persistent
         """
         pass
     
     def close(self):
-        self.connection.close()
+        # TODO: Закрыть соединение
+        pass
 
 # Пример использования
 if __name__ == '__main__':
-    service = OrderService()
-    order_id = service.create_order(
-        customer_id="CUST-001",
-        customer_email="customer@example.com",
-        origin="Москва, ул. Ленина, 1",
-        destination="Санкт-Петербург, Невский пр., 10",
-        weight=5.5
-    )
-    print(f"Заказ создан: {order_id}")
-    service.close()
+    producer = OrderProducer()
+    producer.send_order("ORD-001", "Иван Иванов", 5000)
+    producer.send_order("ORD-002", "Петр Петров", 3000)
+    print("Заказы отправлены")
+    producer.close()
 ```
 
-**B. Routing Service (Consumer + gRPC Server)**
+**2. Consumer (40 баллов)**
 
 ```python
 import pika
 import json
-import grpc
-from concurrent import futures
-import routing_service_pb2
-import routing_service_pb2_grpc
-import random
+import time
 
-# gRPC Server
-class RoutingServiceServicer(routing_service_pb2_grpc.RoutingServiceServicer):
-    def CalculateRoute(self, request, context):
-        """
-        TODO: Реализовать расчет маршрута
-        1. Имитировать расчет расстояния (случайное 500-1000 км)
-        2. Рассчитать время: distance / 60 (км/ч)
-        3. Рассчитать стоимость: distance * 2 (руб/км)
-        4. Вернуть RouteResponse
-        """
-        pass
-
-def serve_grpc():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    routing_service_pb2_grpc.add_RoutingServiceServicer_to_server(
-        RoutingServiceServicer(), server
-    )
-    server.add_insecure_port('[::]:50051')
-    print("gRPC сервер запущен на порту 50051")
-    server.start()
-    server.wait_for_termination()
-
-# RabbitMQ Consumer
-class RoutingConsumer:
+class OrderConsumer:
     def __init__(self):
-        self.connection = pika.BlockingConnection(
-            pika.ConnectionParameters(
-                host='localhost',
-                credentials=pika.PlainCredentials('user', 'password')
-            )
-        )
-        self.channel = self.connection.channel()
-        
-        # TODO: Объявить exchange и очереди
-        
-        # gRPC клиент для вызова RoutingService
-        self.grpc_channel = grpc.insecure_channel('localhost:50051')
-        self.grpc_stub = routing_service_pb2_grpc.RoutingServiceStub(self.grpc_channel)
+        # TODO: Подключиться к RabbitMQ
+        # TODO: Объявить очередь 'orders'
+        # TODO: Настроить prefetch_count=1
+        pass
     
     def callback(self, ch, method, properties, body):
         """
-        TODO: Обработать сообщение из очереди orders
-        1. Распарсить JSON
-        2. Вызвать gRPC CalculateRoute
-        3. Опубликовать результат в очередь routes с routing_key='route.calculated'
-        4. Подтвердить обработку (ack)
+        TODO: Распарсить JSON
+        TODO: Обработать заказ (имитация: sleep(2))
+        TODO: Вывести информацию о заказе
+        TODO: Подтвердить обработку (basic_ack)
         """
         pass
     
     def start_consuming(self):
-        self.channel.basic_consume(queue='orders', on_message_callback=self.callback)
-        print("Ожидание заказов...")
-        self.channel.start_consuming()
+        # TODO: Запустить прослушивание очереди
+        pass
 
 if __name__ == '__main__':
-    # Запустить gRPC сервер в отдельном потоке
-    import threading
-    grpc_thread = threading.Thread(target=serve_grpc, daemon=True)
-    grpc_thread.start()
-    
-    # Запустить RabbitMQ Consumer
-    consumer = RoutingConsumer()
+    consumer = OrderConsumer()
+    print("Ожидание заказов...")
     consumer.start_consuming()
 ```
 
-**C. Notification Service (Consumer)**
-
-```python
-import pika
-import json
-
-class NotificationService:
-    def __init__(self):
-        self.connection = pika.BlockingConnection(
-            pika.ConnectionParameters(
-                host='localhost',
-                credentials=pika.PlainCredentials('user', 'password')
-            )
-        )
-        self.channel = self.connection.channel()
-        
-        # TODO: Объявить exchange и очередь notifications
-    
-    def callback(self, ch, method, properties, body):
-        """
-        TODO: Обработать сообщение из очереди notifications
-        1. Распарсить JSON
-        2. Имитировать отправку email (print в консоль)
-        3. Подтвердить обработку (ack)
-        """
-        pass
-    
-    def start_consuming(self):
-        self.channel.basic_consume(queue='notifications', on_message_callback=self.callback)
-        print("Ожидание уведомлений...")
-        self.channel.start_consuming()
-
-if __name__ == '__main__':
-    service = NotificationService()
-    service.start_consuming()
-```
-
-#### Часть 3. Docker Compose для RabbitMQ (10 баллов)
-
-Создайте `docker-compose.yml`:
+**3. Docker Compose (15 баллов)**
 
 ```yaml
 version: '3.8'
-
 services:
   rabbitmq:
     image: rabbitmq:3.13-management
-    container_name: rabbitmq_logistics
     ports:
-      - "5672:5672"    # AMQP
-      - "15672:15672"  # Management UI
+      - "5672:5672"
+      - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: user
-      RABBITMQ_DEFAULT_PASS: password
-    volumes:
-      - rabbitmq_data:/var/lib/rabbitmq
-    healthcheck:
-      test: ["CMD", "rabbitmqctl", "status"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-volumes:
-  rabbitmq_data:
+      # TODO: Добавить RABBITMQ_DEFAULT_USER и PASSWORD
 ```
 
-#### Часть 4. Тестирование и анализ (20 баллов)
+### Что нужно найти и проанализировать (15 баллов)
 
-**Требуется найти и проанализировать:**
+**Эксперимент:**
+1. Запустите RabbitMQ через docker-compose
+2. Запустите Consumer
+3. Запустите Producer и отправьте 5 заказов
+4. Замерьте время от отправки первого до обработки последнего заказа
 
-1. **Время обработки сообщений:**
-   - Создайте 10 заказов через Order Service
-   - Измерьте время от публикации в `orders` до получения в `notifications`
-   - Постройте график "Order ID vs Processing Time"
+**Ответьте на вопросы:**
 
-2. **Пропускная способность системы:**
-   - Отправьте 100 заказов
-   - Рассчитайте среднее количество обработанных заказов в секунду
-   - Формула: `throughput = total_orders / total_time`
+1. **Время обработки:**
+   - Сколько времени заняла обработка 5 заказов?
+   - Почему именно столько?
 
-3. **Надежность доставки:**
-   - Продемонстрируйте, что происходит, если:
-     - Routing Service отключен (сообщения накапливаются в очереди)
-     - gRPC сервер недоступен (обработка сообщения повторяется)
-   - Объясните роль `basic_ack` в обеспечении at-least-once delivery
+2. **Надежность:**
+   - Что произойдет, если Consumer отключится во время обработки?
+   - Какую роль играет `basic_ack`?
 
-4. **Сравнение с синхронной архитектурой:**
-   - Оцените, сколько времени заняла бы обработка при синхронных HTTP-вызовах
-   - Преимущества асинхронной архитектуры:
-     - Temporal decoupling
-     - Buffering в очереди
-     - Возможность масштабирования Consumer'ов
-
-5. **Мониторинг через RabbitMQ Management UI:**
-   - Откройте http://localhost:15672
-   - Зафиксируйте (скриншоты):
-     - Количество сообщений в очередях
-     - Message rates (incoming/outgoing)
-     - Количество Consumer'ов на каждой очереди
+3. **Преимущества асинхронности:**
+   - Чем асинхронная обработка лучше синхронной?
+   - Когда стоит использовать RabbitMQ вместо прямых HTTP-вызовов?
 
 ### Формат сдачи
 
-**Файлы для предоставления:**
-1. `architecture.md` - описание архитектуры, диаграммы
-2. `routing_service.proto` - proto-контракт
-3. `order_service.py` - Producer
-4. `routing_service.py` - Consumer + gRPC Server
-5. `notification_service.py` - Consumer
-6. `docker-compose.yml` - конфигурация RabbitMQ
-7. `performance_analysis.md` - результаты тестирования с графиками и выводами
+1. `producer.py` - Producer
+2. `consumer.py` - Consumer  
+3. `docker-compose.yml` - конфигурация RabbitMQ
+4. Ответы на вопросы с замерами времени
 
 **Критерии оценки:**
-- Корректность архитектуры и проектирования (20%)
-- Реализация Order Service (15%)
-- Реализация Routing Service (25%)
-- Реализация Notification Service (10%)
-- Docker Compose конфигурация (10%)
-- Качество анализа производительности (20%)
+- Работающий Producer (30%)
+- Работающий Consumer с правильной обработкой (40%)
+- Docker Compose (15%)
+- Качество анализа (15%)
 
 ---
 
-## Практическое задание №4. Обнаружение отказов и надежность распределенной системы
+## Практическое задание №4. Анализ протоколов обнаружения отказов
 
 ### Постановка задачи
 
-Вы - архитектор распределенной системы "CloudMonitor" для мониторинга серверов в дата-центре. Система состоит из N узлов, которые должны обнаруживать отказы друг друга и обеспечивать высокую доступность. Необходимо спроектировать и проанализировать протокол обнаружения отказов, оптимизировав параметры для баланса между скоростью обнаружения и использованием сетевых ресурсов.
+Проанализируйте и сравните протоколы обнаружения отказов (Gossip vs Heartbeat) для распределенной системы мониторинга из 50 узлов.
 
-### Бизнес-требования
+### Исходные данные
 
-1. **Обнаружение отказов:** Система должна обнаруживать выход узла из строя не позднее чем через 5 секунд
-2. **Масштабируемость:** Поддержка до 100 узлов в кластере
-3. **Эффективность:** Минимальное использование полосы пропускания (< 10 Кбит/с на узел)
-4. **Устойчивость к сетевым проблемам:** Корректная работа при потере до 10% пакетов
-5. **Отказоустойчивость:** Система продолжает работать при отказе до 20% узлов
+**Параметры системы:**
+- Количество узлов: N = 50
+- Отказавших узлов: 10% (5 узлов)
+- Потеря пакетов: 5%
+- Размер пакета: 1024 байта
 
-### Задание
+**Gossip протокол:**
+- Gossip Interval: τ = 0.2 сек
+- Gossip Fanout: k = 3
 
-#### Часть 1. Теоретический анализ протоколов (25 баллов)
+**Heartbeat протокол:**
+- Heartbeat Interval: 0.2 сек
+- Timeout: 1.0 сек
 
-**Требуется проанализировать:**
+### Часть 1. Теоретический анализ (30 баллов)
 
-1. **Сравнение протоколов обнаружения отказов:**
+**Заполните сравнительную таблицу:**
 
-   | Характеристика | Heartbeat (централизованный) | Heartbeat (peer-to-peer) | Gossip (Serf) |
-   |----------------|------------------------------|-------------------------|----------------|
-   | Время обнаружения первого отказа | ? | ? | ? |
-   | Время полной конвергенции | ? | ? | ? |
-   | Использование полосы пропускания | O(?) | O(?) | O(?) |
-   | Масштабируемость | ? | ? | ? |
-   | Single point of failure | ? | ? | ? |
-   | Устойчивость к сетевым разделениям | ? | ? | ? |
+| Характеристика | Gossip (Serf) | Heartbeat (централизованный) |
+|----------------|---------------|------------------------------|
+| Время обнаружения первого отказа | ? | ? |
+| Масштабируемость (Big-O) | O(?) | O(?) |
+| Single point of failure | ? | ? |
+| Устойчивость к разделению сети | ? | ? |
 
-2. **Модель протокола Gossip:**
-   - Объясните алгоритм распространения информации об отказе
-   - Опишите влияние параметров:
-     - Gossip Interval (τ) - интервал между раундами
-     - Gossip Fanout (k) - количество узлов для контакта
-   - Математическая модель времени конвергенции:
-     ```
-     T_convergence ≈ τ × log_k(N)
-     где N - количество узлов
-     ```
+**Формулы для расчетов:**
 
-3. **Проблема ложных срабатываний (false positives):**
-   - Объясните причины (сетевые задержки, перегрузка узла)
-   - Методы снижения: timeout tuning, adaptive timeouts
-   - Trade-off между скоростью обнаружения и точностью
+1. **Время конвергенции Gossip:**
+   ```
+   T_convergence ≈ τ × log_k(N)
+   T_convergence ≈ 0.2 × log_3(50) ≈ ?
+   ```
 
-#### Часть 2. Симуляция с Serf Convergence Simulator (35 баллов)
+2. **Использование полосы пропускания Gossip (на узел):**
+   ```
+   Bandwidth = (k × размер_пакета × 8 бит) / τ
+   Bandwidth = (3 × 1024 × 8) / 0.2 ≈ ? Кбит/с
+   ```
+
+3. **Heartbeat пропускная способность:**
+   ```
+   Bandwidth_total = N × размер_пакета × 8 / interval
+   Bandwidth_per_node = Bandwidth_total / N = ?
+   ```
+
+**Задание:** Рассчитайте все значения и заполните таблицу.
+
+### Часть 2. Эксперименты с Serf Simulator (40 баллов)
 
 Используйте симулятор: https://www.serf.io/docs/internals/simulator.html
 
 **Эксперимент 1: Влияние Gossip Interval**
 
-Зафиксируйте параметры:
-- Nodes: 50
-- Gossip Fanout: 3
-- Packet Loss: 5%
-- Node Failures: 10%
+Зафиксируйте:
+- Nodes = 50
+- Gossip Fanout = 3
+- Packet Loss = 5%
+- Node Failures = 10%
 
-Варьируйте Gossip Interval: 0.1, 0.2, 0.5, 1.0, 2.0 сек
+Варьируйте Gossip Interval: 0.1, 0.2, 0.5, 1.0 сек
 
 **Заполните таблицу:**
 
-| Gossip Interval | Время до "Хотя бы один узел знает" | Время до "Все живые узлы знают" | Макс. пропускная способность (Кбит/с) |
-|-----------------|-----------------------------------|--------------------------------|---------------------------------------|
-| 0.1 с | | | |
-| 0.2 с | | | |
-| 0.5 с | | | |
-| 1.0 с | | | |
-| 2.0 с | | | |
+| Gossip Interval | Время до "Все узлы знают" | Макс. полоса (Кбит/с) |
+|-----------------|---------------------------|----------------------|
+| 0.1 с | | |
+| 0.2 с | | |
+| 0.5 с | | |
+| 1.0 с | | |
 
-**Постройте графики:**
-- График 1: Gossip Interval vs Время конвергенции
-- График 2: Gossip Interval vs Пропускная способность
+**Эксперимент 2: Влияние количества узлов**
 
-**Эксперимент 2: Масштабируемость системы**
+Зафиксируйте:
+- Gossip Interval = 0.2 с
+- Gossip Fanout = 3
+- Packet Loss = 5%
+- Node Failures = 10%
 
-Зафиксируйте параметры:
-- Gossip Interval: 0.2 с
-- Gossip Fanout: 3
-- Packet Loss: 5%
-- Node Failures: 10%
+Варьируйте Nodes: 10, 25, 50, 100
 
-Варьируйте Nodes: 10, 25, 50, 100, 200
+**Заполните таблицу и ответьте:**
+- Как изменяется время конвергенции при увеличении N в 10 раз?
+- Соответствует ли это логарифмической зависимости?
 
-**Заполните таблицу и постройте графики аналогично Эксперименту 1**
+### Часть 3. Python-расчеты (30 баллов)
 
-**Эксперимент 3: Оптимизация Gossip Fanout**
-
-Зафиксируйте параметры:
-- Gossip Interval: 0.5 с
-- Nodes: 100
-- Packet Loss: 0%
-- Node Failures: 5%
-
-Варьируйте Gossip Fanout: 2, 3, 5, 7, 10
-
-**Найдите оптимальное значение Fanout:**
-- Минимальное время конвергенции при ограничении пропускной способности < 10 Кбит/с
-
-**Эксперимент 4: Устойчивость к потере пакетов**
-
-Зафиксируйте параметры:
-- Gossip Interval: 0.2 с
-- Gossip Fanout: 3
-- Nodes: 50
-- Node Failures: 5%
-
-Варьируйте Packet Loss: 0%, 5%, 10%, 20%, 30%
-
-**Проанализируйте:**
-- При каком проценте потери пакетов система становится неработоспособной?
-- Как изменяется время конвергенции?
-
-#### Часть 3. Реализация Python-симулятора (30 баллов)
-
-Реализуйте упрощенный симулятор для сравнения Serf Gossip с Heartbeat:
+Реализуйте функцию для расчета пропускной способности:
 
 ```python
-import random
-import time
-
-class Node:
-    def __init__(self, node_id):
-        self.id = node_id
-        self.alive = True
-        self.knows_failure = False  # Знает ли узел об отказе
-
-class GossipSimulator:
-    def __init__(self, num_nodes, gossip_interval, gossip_fanout, packet_loss, node_failures_pct):
-        """
-        TODO: Инициализировать симулятор
-        - Создать N узлов
-        - Случайно выбрать node_failures_pct% узлов и пометить как отказавшие
-        - Один из живых узлов изначально знает об отказе
-        """
-        self.nodes = []
-        self.gossip_interval = gossip_interval
-        self.gossip_fanout = gossip_fanout
-        self.packet_loss = packet_loss
-        pass
-    
-    def simulate_round(self):
-        """
-        TODO: Симуляция одного раунда gossip
-        Для каждого живого узла, который знает об отказе:
-            1. Выбрать gossip_fanout случайных живых узлов
-            2. С вероятностью (1 - packet_loss) передать информацию
-            3. Обновить knows_failure для целевых узлов
-        """
-        pass
-    
-    def run_simulation(self):
-        """
-        TODO: Запустить симуляцию
-        Возвращает:
-            - time_first_knowledge: время до первого обнаружения (сек)
-            - time_all_knowledge: время полной конвергенции (сек)
-            - bandwidth_used: использованная пропускная способность (усл. единиц)
-        """
-        round_count = 0
-        time_first = None
-        time_all = None
-        
-        while not self.all_alive_nodes_know():
-            self.simulate_round()
-            round_count += 1
-            
-            current_time = round_count * self.gossip_interval
-            
-            if time_first is None and self.at_least_one_knows():
-                time_first = current_time
-            
-            if current_time > 30:  # Таймаут 30 секунд
-                break
-        
-        time_all = round_count * self.gossip_interval
-        
-        # Расчет пропускной способности
-        # bandwidth = количество сообщений * размер сообщения
-        bandwidth_used = self.calculate_bandwidth()
-        
-        return time_first, time_all, bandwidth_used
-    
-    def at_least_one_knows(self):
-        """Проверка: хотя бы один живой узел знает об отказе"""
-        pass
-    
-    def all_alive_nodes_know(self):
-        """Проверка: все живые узлы знают об отказе"""
-        pass
-    
-    def calculate_bandwidth(self):
-        """
-        TODO: Рассчитать использованную пропускную способность
-        Формула: (число узлов × fanout × раундов × размер пакета) / время
-        """
-        pass
-
-class HeartbeatSimulator:
+def calculate_bandwidth(gossip_interval, gossip_fanout, nodes, 
+                       packet_size=1024, overhead=1.2):
     """
-    TODO: Реализовать централизованный heartbeat-протокол
-    - Каждый узел отправляет heartbeat серверу мониторинга каждые heartbeat_interval
-    - Сервер обнаруживает отказ, если не получает heartbeat в течение timeout
-    - Сервер оповещает все узлы об отказе
+    TODO: Рассчитать пропускную способность для Gossip протокола
+    
+    Формула:
+    messages_per_second = nodes * fanout / interval
+    bandwidth_bps = messages_per_second * packet_size * overhead * 8
+    
+    Возвращает: bandwidth в Кбит/с
     """
     pass
 
-# Функция для сравнения протоколов
-def compare_protocols(num_nodes, node_failures_pct):
+def compare_protocols(nodes=50):
     """
     TODO: Сравнить Gossip и Heartbeat
-    Запустить симуляции с идентичными параметрами
-    Вернуть сравнительную таблицу
+    
+    Рассчитать для обоих протоколов:
+    - Пропускную способность на узел
+    - Общую пропускную способность
+    
+    Вывести сравнительную таблицу
     """
     pass
 
-# Запуск экспериментов
+# Запуск
 if __name__ == '__main__':
-    # Эксперимент: 50 узлов, 10% отказов
-    num_nodes = 50
-    node_failures_pct = 10
+    # Эксперимент: варьировать Gossip Interval
+    intervals = [0.1, 0.2, 0.5, 1.0]
     
-    print("Сравнение протоколов обнаружения отказов")
-    print("=" * 80)
+    print("Gossip Interval | Пропускная способность")
+    print("-" * 45)
+    for interval in intervals:
+        bandwidth = calculate_bandwidth(interval, 3, 50)
+        print(f"{interval:^15} | {bandwidth:,.2f} Кбит/с")
     
-    # Gossip
-    gossip_sim = GossipSimulator(
-        num_nodes=num_nodes,
-        gossip_interval=0.2,
-        gossip_fanout=3,
-        packet_loss=0.05,
-        node_failures_pct=node_failures_pct
-    )
-    gossip_results = gossip_sim.run_simulation()
-    
-    # Heartbeat
-    heartbeat_sim = HeartbeatSimulator(
-        num_nodes=num_nodes,
-        heartbeat_interval=0.2,
-        timeout=1.0,
-        node_failures_pct=node_failures_pct
-    )
-    heartbeat_results = heartbeat_sim.run_simulation()
-    
-    # Вывод результатов
-    print(f"\nGossip Protocol:")
-    print(f"  Время первого обнаружения: {gossip_results[0]:.2f} сек")
-    print(f"  Время полной конвергенции: {gossip_results[1]:.2f} сек")
-    print(f"  Пропускная способность: {gossip_results[2]:.2f} усл. ед.")
-    
-    print(f"\nHeartbeat Protocol:")
-    print(f"  Время первого обнаружения: {heartbeat_results[0]:.2f} сек")
-    print(f"  Время полной конвергенции: {heartbeat_results[1]:.2f} сек")
-    print(f"  Пропускная способность: {heartbeat_results[2]:.2f} усл. ед.")
+    print("\n" + "="*45 + "\n")
+    compare_protocols(nodes=50)
 ```
 
-**Требуется реализовать:**
-1. Класс `GossipSimulator` с методами simulate_round, run_simulation
-2. Класс `HeartbeatSimulator` для сравнения
-3. Функцию сравнения протоколов с выводом результатов
+**Задание:** Реализуйте функции и запустите расчеты.
 
-#### Часть 4. Рекомендации для CloudMonitor (10 баллов)
+### Что нужно найти и проанализировать
 
-**Требуется найти и обосновать:**
+**1. Оптимальные параметры (выберите на основе экспериментов):**
 
-1. **Оптимальные параметры для CloudMonitor:**
-   - Количество узлов: 100
-   - Требование: обнаружение отказа < 5 сек
-   - Ограничение: пропускная способность < 10 Кбит/с на узел
-   - Условия: packet loss до 10%, node failures до 20%
+Для системы из 100 узлов с требованиями:
+- Обнаружение отказа < 3 секунды
+- Пропускная способность < 10 Кбит/с на узел
 
-   На основе экспериментов предложите:
-   - Gossip Interval: ? сек
-   - Gossip Fanout: ?
-   - Timeout для определения отказа: ? сек
+Рекомендуемые параметры:
+- Gossip Interval: ? сек
+- Gossip Fanout: ?
+- Обоснование выбора: ?
 
-2. **Архитектура мониторинга:**
-   - Выбор протокола: Gossip vs Heartbeat vs Hybrid
-   - Топология: peer-to-peer vs hierarchical
-   - Механизмы устранения ложных срабатываний
-   - Интеграция с системой алертинга (например, PagerDuty)
+**2. Сравнение протоколов:**
 
-3. **План обеспечения отказоустойчивости:**
-   - Стратегия репликации данных (quorum-based)
-   - Механизм автоматического восстановления (self-healing)
-   - Сценарии split-brain и методы их предотвращения
-   - Мониторинг метрик (Prometheus + Grafana):
-     - Количество живых узлов
-     - Время обнаружения последнего отказа
-     - Ложные срабатывания за период
+При каких условиях лучше использовать:
+- Gossip: ?
+- Heartbeat: ?
+
+**3. Влияние потери пакетов:**
+
+На основе Эксперимента с Packet Loss:
+- При 0% потерь: время конвергенции = ? сек
+- При 20% потерь: время конвергенции = ? сек
+- Выводы: ?
 
 ### Формат сдачи
 
-**Файлы для предоставления:**
-1. `protocol_analysis.md` - теоретический анализ с заполненными таблицами
-2. `serf_experiments.xlsx` - результаты всех экспериментов с симулятором Serf
-3. `graphs/` - папка с графиками (PNG/PDF)
-4. `simulator.py` - реализация Python-симулятора
-5. `recommendations.md` - рекомендации для CloudMonitor с обоснованиями
+1. `analysis.md` - заполненные таблицы и расчеты
+2. `bandwidth_calculator.py` - реализация функций
+3. `recommendations.txt` - рекомендации по выбору параметров
 
 **Критерии оценки:**
-- Полнота теоретического анализа (25%)
-- Корректность экспериментов с Serf (35%)
-- Качество реализации Python-симулятора (30%)
-- Обоснованность рекомендаций (10%)
+- Корректность теоретических расчетов (30%)
+- Качество экспериментов с симулятором (40%)
+- Реализация Python-функций (30%)
 
 ---
 
