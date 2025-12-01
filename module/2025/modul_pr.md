@@ -615,71 +615,141 @@ if __name__ == '__main__':
 
 4. **Kuzmiakova A.** *Concurrent, Parallel and Distributed Computing*. e-book Edition, 2023.
 
-### Дополнительная литература по практическим аспектам:
-
-5. **Richardson C., Smith F.** *Microservices: From Design to Deployment*. Nginx, 2016.  
-   *Практическое руководство по микросервисной архитектуре*
-
-6. **Indrasiri K., Siriwardena P.** *Microservices for the Enterprise: Designing, Developing, and Deploying*. Apress, 2018.  
-   *Корпоративные паттерны микросервисов*
-
-7. **Newman S.** *Building Microservices: Designing Fine-Grained Systems*, 2nd ed. O'Reilly Media, 2021.  
-   *Проектирование микросервисных систем*
-
-8. **Fowler M.** *Patterns of Enterprise Application Architecture*. Addison-Wesley, 2002.  
-   *Классические паттерны корпоративных приложений*
 
 ### Спецификации и документация:
 
-9. **gRPC Documentation**: https://grpc.io/docs/  
+5. **gRPC Documentation**: https://grpc.io/docs/  
    *Руководство по gRPC: proto3, streaming, error handling*
 
-10. **Flask Documentation**: https://flask.palletsprojects.com/  
+6. **Flask Documentation**: https://flask.palletsprojects.com/  
     *Официальная документация микрофреймворка Flask*
 
-11. **Nginx Documentation**: https://nginx.org/en/docs/  
+7. **Nginx Documentation**: https://nginx.org/en/docs/  
     *Конфигурирование Nginx: proxy, caching, load balancing*
 
-12. **RabbitMQ Documentation**: https://www.rabbitmq.com/documentation.html  
+8. **RabbitMQ Documentation**: https://www.rabbitmq.com/documentation.html  
     *Руководство по RabbitMQ: exchanges, queues, patterns*
 
-13. **Serf Documentation**: https://www.serf.io/docs/  
+9. **Serf Documentation**: https://www.serf.io/docs/  
     *Gossip protocol, cluster membership, failure detection*
 
-14. **Docker Documentation**: https://docs.docker.com/  
-    *Контейнеризация приложений, Docker Compose*
+10. **Docker Documentation**: https://docs.docker.com/  
 
-### Статьи и исследования:
 
-15. **Das A., et al.** "SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol." *Proceedings of IEEE DSN*, 2002.  
-    *Основополагающая работа по gossip-протоколам*
-
-16. **Gilbert S., Lynch N.** "Brewer's conjecture and the feasibility of consistent, available, partition-tolerant web services." *ACM SIGACT News*, 33(2), 2002.  
-    *Формальное доказательство CAP-теоремы*
-
-17. **Chandra T. D., Toueg S.** "Unreliable failure detectors for reliable distributed systems." *Journal of the ACM*, 43(2), 1996.  
-    *Классификация failure detectors*
-
-### Онлайн-курсы и туториалы:
-
-18. **Martin Kleppmann's Distributed Systems Lectures**: https://www.youtube.com/playlist?list=PLeKd45zvjcDFUEv_ohr_HdUFe97RItdiB  
-    *Видеолекции по распределенным системам от автора "Designing Data-Intensive Applications"*
-
-19. **gRPC Tutorial (Official)**: https://grpc.io/docs/languages/python/basics/  
-    *Пошаговое руководство по gRPC на Python*
-
-20. **RabbitMQ Tutorials**: https://www.rabbitmq.com/getstarted.html  
-    *Практические примеры работы с RabbitMQ*
 
 ---
 
 **Примечание по выполнению практических заданий:**
 
-- Все задания выполняются индивидуально
-- Код должен быть хорошо прокомментирован (на русском или английском языке)
-- Отчеты оформляются в формате Markdown (.md) или PDF
-- Графики строятся с использованием matplotlib, Plotly или Excel
-- Рекомендуемая среда: Ubuntu 20.04+, Python 3.8+
-- Проекты размещаются в Git-репозитории (GitHub/GitLab)
-- Срок выполнения каждого задания: 2 недели
+- Все задания выполняются индивидуально.
+- Код должен быть хорошо прокомментирован (на русском или английском языке).
+- Отчеты оформляются в формате Markdown (.md) или PDF.
+- Графики строятся с использованием matplotlib, Plotly или Excel.
+- Рекомендуемая среда: Ubuntu 20.04+, Python 3.8+.
 - Защита заданий проводится в формате демонстрации работающей системы + ответы на вопросы
+
+
+# Практические задания модульного экзамена
+## Дисциплина: «Распределенные системы»
+## Группа: АБП-231
+
+**Время выполнения:** 40 минут  
+**Детальное описание заданий:** https://github.com/BosenkoTM/Distributed_systems/blob/main/module/2025/modul_pr.md
+
+---
+
+## Практическое задание №1. Реализация gRPC-сервиса
+
+**Задача:** Разработайте gRPC-сервис "ProductCatalog" для получения информации о товарах.
+
+**Требуется реализовать:**
+- Proto-контракт с двумя методами: GetProduct (Unary RPC) и StreamProducts (Server Streaming RPC)
+- Серверную часть с базой данных в памяти (минимум 3 товара)
+- Клиентскую часть с вызовами обоих методов
+
+**Проанализировать:**
+- Время выполнения каждого типа RPC
+- Обработку ошибок (запрос несуществующего товара)
+
+**Формат сдачи:** `product_service.proto`, `server.py`, `client.py` + краткие ответы на вопросы
+
+---
+
+## Практическое задание №2. Проектирование RESTful API
+
+**Задача:** Разработайте REST API на Flask для управления задачами (Task Manager).
+
+**Требуется реализовать:**
+- Базовые CRUD операции для задач (GET, POST, PUT, DELETE)
+- Модель Task: id, title, status, created_at
+- Валидацию входных данных и обработку ошибок
+- Конфигурацию Nginx в качестве обратного прокси
+
+**Проанализировать:**
+- HTTP коды состояния для различных сценариев
+- Идемпотентность методов
+- Преимущества использования Nginx
+
+**Формат сдачи:** `app.py`, `curl_commands.txt`, `taskmanager.conf` + краткие ответы
+
+---
+
+## Практическое задание №3. Асинхронное взаимодействие через RabbitMQ
+
+**Задача:** Разработайте систему обработки заказов с асинхронным взаимодействием через брокер сообщений.
+
+**Требуется реализовать:**
+- Producer для отправки заказов в очередь RabbitMQ
+- Consumer для обработки заказов из очереди (имитация обработки: sleep 2 сек)
+- Docker Compose конфигурацию для запуска RabbitMQ
+- Структуру JSON сообщения: order_id, customer, amount, status
+
+**Проанализировать:**
+- Время обработки 5 заказов
+- Надежность доставки (роль basic_ack)
+- Преимущества асинхронности над синхронными вызовами
+
+**Формат сдачи:** `producer.py`, `consumer.py`, `docker-compose.yml` + замеры и ответы
+
+---
+
+## Практическое задание №4. Анализ протоколов обнаружения отказов
+
+**Задача:** Проанализируйте и сравните протоколы обнаружения отказов (Gossip vs Heartbeat) для системы из 50 узлов.
+
+**Исходные данные:**
+- Узлов: 50, отказов: 10%, потеря пакетов: 5%
+- Gossip: interval=0.2с, fanout=3
+- Heartbeat: interval=0.2с, timeout=1.0с
+
+**Требуется:**
+- Заполнить сравнительную таблицу характеристик протоколов
+- Рассчитать пропускную способность для Gossip (формулы предоставлены)
+- Провести эксперименты с Serf Simulator (варьировать interval и количество узлов)
+- Реализовать Python-функции для расчета bandwidth
+
+**Проанализировать:**
+- Оптимальные параметры для системы из 100 узлов
+- Условия применения каждого протокола
+- Влияние потери пакетов на время конвергенции
+
+**Формат сдачи:** таблицы и расчеты, `bandwidth_calculator.py`, `recommendations.txt`
+
+---
+
+## Общие требования
+
+**Оценивание:**
+- Задание №1: proto-файл (30%), сервер (40%), клиент (30%)
+- Задание №2: endpoints (40%), curl (30%), Nginx (30%)
+- Задание №3: Producer (30%), Consumer (40%), Docker (15%), анализ (15%)
+- Задание №4: расчеты (30%), эксперименты (40%), Python (30%)
+
+**Технические требования:**
+- Python 3.8+, Ubuntu 20.04+
+- Предустановленные библиотеки: grpcio, grpcio-tools, Flask, pika
+- Код должен быть работающим с комментариями
+
+**Справочные материалы:** Разрешается использовать документацию, примеры из лабораторных работ
+
+---
