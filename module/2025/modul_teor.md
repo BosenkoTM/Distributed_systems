@@ -267,49 +267,15 @@
 4. **Kuzmiakova A.** *Concurrent, Parallel and Distributed Computing*. e-book Edition, 2023.  
    *Современное издание по параллельным и распределенным вычислениям*
 
-### Дополнительная литература:
-
-5. **Richardson C.** *Microservices Patterns: With examples in Java*. Manning Publications, 2018.  
-   *Паттерны проектирования микросервисных архитектур*
-
-6. **Kleppmann M.** *Designing Data-Intensive Applications*. O'Reilly Media, 2017.  
-   *Глубокий анализ систем управления данными в распределенных системах*
-
-7. **Burns B.** *Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services*. O'Reilly Media, 2018.  
-   *Паттерны проектирования распределенных систем с примерами на Kubernetes*
-
-8. **Brewer E. A.** CAP twelve years later: How the "rules" have changed. *Computer*, 45(2), 2012, pp. 23-29.  
-   *Статья автора CAP-теоремы о ее эволюции и практическом применении*
 
 ### Спецификации и документация:
 
-9. **gRPC Documentation**: https://grpc.io/docs/  
+5. **gRPC Documentation**: https://grpc.io/docs/  
    *Официальная документация gRPC framework*
 
-10. **RabbitMQ Documentation**: https://www.rabbitmq.com/documentation.html  
+6. **RabbitMQ Documentation**: https://www.rabbitmq.com/documentation.html  
     *Руководство по брокеру сообщений RabbitMQ*
 
-11. **Serf - A decentralized solution for cluster membership**: https://www.serf.io/docs/  
+7. **Serf - A decentralized solution for cluster membership**: https://www.serf.io/docs/  
     *Документация по инструменту обнаружения отказов Serf*
 
-12. **Kubernetes Documentation**: https://kubernetes.io/docs/  
-    *Официальная документация платформы оркестрации контейнеров*
-
-### Онлайн-ресурсы:
-
-13. **CAP Theorem Revisited**: http://robertgreiner.com/cap-theorem-revisited/  
-    *Визуальное объяснение CAP-теоремы*
-
-14. **The Twelve-Factor App**: https://12factor.net/  
-    *Методология построения современных облачных приложений*
-
-15. **Microsoft Azure Architecture Center**: https://docs.microsoft.com/en-us/azure/architecture/  
-    *Паттерны и best practices распределенных систем*
-
----
-
-**Примечание:** При подготовке к экзамену рекомендуется:
-- Изучить основные главы учебников [1, 2]
-- Ознакомиться с практическими примерами из лабораторных работ
-- Проанализировать реальные кейсы распределенных систем (AWS, Google Cloud, Apache проекты)
-- Понимать trade-offs между различными архитектурными решениями
