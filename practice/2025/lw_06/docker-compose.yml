@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:5000"
+    depends_on:
+      - redis
+    volumes:
+      - ./.cursor:/home/mgpu/Downloads/ds/lb_06/.cursor
+  redis:
+    image: "redis:alpine"
+    restart: always
+
