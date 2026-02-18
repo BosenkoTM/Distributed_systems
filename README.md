@@ -45,7 +45,7 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 - `ЛР-6` Проектирование и реализация распределенной системы для бизнес-задачи (например, анализ больших данных). Применение облачных технологий для развертывания и управления распределенной системой. [LMS MGPU](https://lms.mgpu.ru/editor/assignment/2308).
 
 ## ТЕСТ 1. Распределенные системы.  
-`04.10.2024 10-30`
+
 
 [ССЫЛКА ДЛЯ ВХОДА](https://docs.google.com/forms/d/e/1FAIpQLScEjZmp_Fsx2qGEp-KWWR5L8UfUrZs0GmGJIM_Nd3I0nzbuwg/viewform?embedded=true)
 
@@ -54,7 +54,7 @@ Timur Bosenko M. (bosenkotm@mgpu.ru)
 `Глава 1` - `Глава 2` Учебник [Бабичев С. Л](https://urait.ru/book/raspredelennye-sistemy-445188)
 
 ## ТЕСТ 2. Распределенные системы. 
-`15.11.2024 10-30`
+
 
 [ССЫЛКА ДЛЯ ВХОДА](https://docs.google.com/forms/d/e/1FAIpQLScx-U2XsIRvTkMHWHqbu15K9I9lNxc-n2NCgK-PiC22B0BTzA/viewform?embedded=true)
 
