@@ -1,0 +1,26 @@
+// Указываем синтаксис proto3
+syntax = "proto3";
+
+// Определяем пакет для нашего сервиса
+package weather;
+
+// Сервис для получения информации о погоде
+service WeatherService {
+  // Unary RPC: запрос текущей погоды
+  rpc GetCurrentWeather(CityRequest) returns (WeatherResponse) {}
+
+  // Server streaming RPC: подписка на поток прогнозов
+  rpc SubscribeToForecasts(CityRequest) returns (stream WeatherResponse) {}
+}
+
+// Сообщение-запрос с названием города
+message CityRequest {
+  string name = 1;
+}
+
+// Сообщение-ответ с данными о погоде
+message WeatherResponse {
+  float temperature = 1;
+  string description = 2;
+  string timestamp = 3; // Для потока, чтобы видеть разницу
+}
